@@ -1,13 +1,13 @@
-﻿using Microsoft.VisualStudio.Text;
-using Microsoft.VisualStudio.Text.Classification;
-using Microsoft.VisualStudio.Utilities;
-using System.ComponentModel.Composition;
-
-namespace EnhancedCommentsCpp
+﻿namespace EnhancedCommentsCpp
 {
+    using Microsoft.VisualStudio.Text;
+    using Microsoft.VisualStudio.Text.Classification;
+    using Microsoft.VisualStudio.Utilities;
+    using System.ComponentModel.Composition;
+
     [Export(typeof(IClassifierProvider))]
     [ContentType("C/C++")]
-    internal class EnhancedCommentsCppProvider : IClassifierProvider
+    internal sealed class EnhancedCommentsCppProvider : IClassifierProvider
     {
         [Import]
         internal IClassificationTypeRegistryService ClassificationRegistry = null;

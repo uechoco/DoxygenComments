@@ -1,10 +1,10 @@
-﻿using Microsoft.VisualStudio.Text.Classification;
-using Microsoft.VisualStudio.Utilities;
-using System.ComponentModel.Composition;
-using System.Windows.Media;
-
-namespace EnhancedCommentsCpp
+﻿namespace EnhancedCommentsCpp
 {
+    using Microsoft.VisualStudio.Text.Classification;
+    using Microsoft.VisualStudio.Utilities;
+    using System.ComponentModel.Composition;
+    using System.Windows.Media;
+
     [Export(typeof(EditorFormatDefinition))]
     [ClassificationType(ClassificationTypeNames = "Doxygen Command")]
     [Name("Doxygen Command")]

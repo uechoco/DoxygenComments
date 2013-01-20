@@ -3,7 +3,10 @@
   <Metadata>
     <Identity Id="EnhancedCommentsCpp..b942310b-cfb1-496d-ae3c-65937baed223" Version="1.0" Language="en-US" Publisher="Alexander Manenko" />
     <DisplayName>EnhancedCommentsCpp</DisplayName>
-    <Description xml:space="preserve">Classifier extension to the Visual Studio Editor that highlights documentation tags inside C++ comments.</Description>
+    <Description xml:space="preserve">Visual Studio Editor extension that highlights Doxygen documentation tags inside C++ comments.</Description>
+    <License>PackageSpecific\LICENSE.txt</License>
+    <PreviewImage>PackageSpecific\PREVIEW.png</PreviewImage>
+    <Tags>doxygen; syntax-highlighting; c++; cpp; comments; documentation</Tags>
   </Metadata>
   <Installation>
     <InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="11.0" />

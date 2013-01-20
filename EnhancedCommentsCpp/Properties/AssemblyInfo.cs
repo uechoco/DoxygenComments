@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("EnhancedCommentsCpp")]
-[assembly: AssemblyCopyright("")]
+[assembly: AssemblyCopyright("Copyright (c) 2013 Alexander Manenko")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EnhancedCommentsCpp
+﻿namespace EnhancedCommentsCpp
 {
-    static class DoxygenCommands
+    /// <summary>Various Doxygen constants.</summary>
+    internal static class Doxygen
     {
+        /// <summary>List of Doxygen Commands. Should be sorted by length (longer commands first).</summary>
         public static readonly string[] Commands =
         {
             @"\protectedsection",

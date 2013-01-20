@@ -1,13 +1,15 @@
-﻿using Microsoft.VisualStudio.Text;
-using Microsoft.VisualStudio.Text.Classification;
-using System;
-using System.Collections.Generic;
-
-namespace EnhancedCommentsCpp
+﻿namespace EnhancedCommentsCpp
 {
-    class DoxygenCommandClassifier : IClassifier
+    using Microsoft.VisualStudio.Text;
+    using Microsoft.VisualStudio.Text.Classification;
+    using System;
+    using System.Linq;
+    using System.Collections.Generic;
+    using System.Reflection;
+
+    internal sealed class DoxygenCommandClassifier : IClassifier
     {
-        IClassificationType _classificationType;
+        private IClassificationType _classificationType;
 
         internal DoxygenCommandClassifier(IClassificationTypeRegistryService registry)
         {
@@ -19,23 +21,42 @@ namespace EnhancedCommentsCpp
         public IList<ClassificationSpan> GetClassificationSpans(SnapshotSpan span)
         {
             var result = new List<ClassificationSpan>();
-            var currentText = span.GetText();
-            var currentOffset = 0;
+            var buffer = span.Snapshot.TextBuffer;
 
-            // Scan the current span for all tokens.
-            Token token = null;
-            do
+            var commentHelper = new CommentHelper(span.Snapshot.TextBuffer);
+
+            if (commentHelper.Available)
             {
-                token = Scan(currentText, currentOffset, currentText.Length - currentOffset);
-                if (token != null)
+                var commentSpans = commentHelper.GetCommentSpans(span);
+                if (commentSpans.Count > 0)
                 {
-                    var start = span.Start.Position + token.StartIndex;
-                    var tokenSpan = new SnapshotSpan(span.Snapshot, start, token.Length);
-                    result.Add(new ClassificationSpan(tokenSpan, _classificationType));
+                    var currentText = span.GetText();
+                    var currentOffset = 0;
 
-                    currentOffset = token.Length + token.StartIndex;
+                    // Scan the current span for all tokens.
+                    Token token = null;
+                    do
+                    {
+                        token = Scan(currentText, currentOffset, currentText.Length - currentOffset);
+                        if (token != null)
+                        {
+                            var start = span.Start.Position + token.StartIndex;
+                            var tokenSpan = new SnapshotSpan(span.Snapshot, start, token.Length);
+
+                            foreach (var commentSpan in commentSpans)
+                            {
+                                if (tokenSpan.OverlapsWith(commentSpan.Span))
+                                {
+                                    result.Add(new ClassificationSpan(tokenSpan, _classificationType));
+                                    break;
+                                }
+                            }
+
+                            currentOffset = token.Length + token.StartIndex;
+                        }
+                    } while (token != null && currentOffset < currentText.Length);
                 }
-            } while (token != null && currentOffset < currentText.Length);
+            }
 
             return result;
         }
@@ -43,33 +64,97 @@ namespace EnhancedCommentsCpp
         private Token Scan(string text, int startIndex, int length)
         {
             Token token = null;
-
-            foreach (var cmd in DoxygenCommands.Commands)
+            var index = startIndex;
+            while (index < text.Length)
             {
-                var start = text.IndexOf(cmd, startIndex, length);
-                if (start != -1)
+                bool found = false;
+                foreach (var cmd in Doxygen.Commands)
                 {
-                    var nextCharIndex = start + cmd.Length;
-                    if (nextCharIndex < length)
+                    if (IsToken(text, cmd, index))
                     {
-                        var c = text[nextCharIndex];
-                        if (char.IsPunctuation(c) ||
-                            char.IsWhiteSpace(c) ||
-                            char.IsSymbol(c))
+                        var nextCharIndex = index + cmd.Length;
+                        if (nextCharIndex < text.Length)
                         {
-                            token = new Token
+                            if (IdentifierChar(text[nextCharIndex]))
                             {
-                                Length = cmd.Length,
-                                StartIndex = start
-                            };
+                                continue;
+                            }
+                        }
 
-                            break;
-                        }   
+                        token = new Token
+                        {
+                            Length = cmd.Length,
+                            StartIndex = index,
+                            TokenKind = TokenKind.DoxygenCommand,
+                            Text = cmd
+                        };
+
+                        found = true;
+                        break;
                     }
                 }
+
+                if (found)
+                {
+                    break;
+                }
+
+                index++;
             }
 
             return token;
+        }
+
+        private bool IsToken(string text, string token, int startIndex)
+        {
+            var isToken = false;
+
+            if (text.Length >= startIndex + token.Length)
+            {
+                var i = text.IndexOf(token, startIndex, token.Length);
+                isToken = i == startIndex;
+            }
+
+            return isToken;
+        }
+
+        private bool IdentifierChar(char c)
+        {
+            return (char.IsPunctuation(c) || char.IsWhiteSpace(c) || char.IsSymbol(c)) == false;
+        }
+
+        private sealed class CommentHelper
+        {
+            private Type _colorerType;
+            private object _colorer;
+
+            public CommentHelper(ITextBuffer buffer)
+            {
+                _colorerType = Type.GetType("Microsoft.VisualC.CppColorer, Microsoft.VisualC.Editor.Implementation, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a");
+                buffer.Properties.TryGetProperty(_colorerType, out _colorer);
+            }
+
+            public bool Available
+            {
+                get { return _colorer != null; }
+            }
+
+            private IList<ClassificationSpan> GetClassificationSpans(SnapshotSpan classifySpan)
+            {
+                return ((IClassifier)_colorer).GetClassificationSpans(classifySpan);
+            }
+
+            public IList<ClassificationSpan> GetCommentSpans(SnapshotSpan classifySpan)
+            {
+                if (!Available)
+                {
+                    throw new InvalidOperationException();
+                }
+
+                return GetClassificationSpans(classifySpan)
+                        .Where(s => s.ClassificationType.Classification == "comment")
+                        .ToList();
+            }
         }
     }
 }
