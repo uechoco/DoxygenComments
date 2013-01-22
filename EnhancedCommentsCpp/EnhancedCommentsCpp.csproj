@@ -82,6 +82,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="PackageSpecific\CONFIGURATION.png" />
     <Content Include="PackageSpecific\LICENSE.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
