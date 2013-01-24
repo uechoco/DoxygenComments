@@ -7,7 +7,7 @@
     internal static class DoxygenCommandClassificationDefinition
     {
         [Export(typeof(ClassificationTypeDefinition))]
-        [Name("Doxygen Command")]
+        [Name(Formats.DoxygenCommand)]
         internal static ClassificationTypeDefinition DoxygenCommandTypeDefinition = null;
     }
 }

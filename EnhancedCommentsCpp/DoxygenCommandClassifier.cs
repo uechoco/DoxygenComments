@@ -3,62 +3,53 @@
     using Microsoft.VisualStudio.Text;
     using Microsoft.VisualStudio.Text.Classification;
     using System;
-    using System.Linq;
     using System.Collections.Generic;
-    using System.Reflection;
 
-    internal sealed class DoxygenCommandClassifier : IClassifier
+    internal sealed class DoxygenCommandClassifier : DoxygenCommandClassifierBase
     {
         private IClassificationType _classificationType;
 
         internal DoxygenCommandClassifier(IClassificationTypeRegistryService registry)
         {
-            _classificationType = registry.GetClassificationType("Doxygen Command");
+            _classificationType = registry.GetClassificationType(Formats.DoxygenCommand);
         }
 
-        public event EventHandler<ClassificationChangedEventArgs> ClassificationChanged;
-
-        public IList<ClassificationSpan> GetClassificationSpans(SnapshotSpan span)
+        /// <summary>
+        /// Gets all the <see cref="Microsoft.VisualStudio.Text.Classification.ClassificationSpan"/> objects
+        /// that overlap the given range of text.
+        /// </summary>
+        /// <param name="span">The snapshot span.</param>
+        /// <param name="comments">The comments spans.</param>
+        /// <returns>
+        /// A list of <see cref="Microsoft.VisualStudio.Text.Classification.ClassificationSpan"/> objects
+        /// that intersect with the given range.
+        /// </returns>
+        protected override IList<ClassificationSpan> GetDoxygenCommandSpans(SnapshotSpan span, IEnumerable<ClassificationSpan> comments)
         {
-            var result = new List<ClassificationSpan>();
-            var buffer = span.Snapshot.TextBuffer;
+            var doxygenCommandSpans = new List<ClassificationSpan>();
+            var currentText = span.GetText();
+            var currentOffset = 0;
 
-            var commentHelper = new CommentHelper(span.Snapshot.TextBuffer);
-
-            if (commentHelper.Available)
+            // Scan the current span for all tokens.
+            Token token = null;
+            do
             {
-                var commentSpans = commentHelper.GetCommentSpans(span);
-                if (commentSpans.Count > 0)
+                token = Scan(currentText, currentOffset, currentText.Length - currentOffset);
+                if (token != null)
                 {
-                    var currentText = span.GetText();
-                    var currentOffset = 0;
+                    var start = span.Start.Position + token.StartIndex;
+                    var tokenSpan = new SnapshotSpan(span.Snapshot, start, token.Length);
 
-                    // Scan the current span for all tokens.
-                    Token token = null;
-                    do
+                    if (this.IsInsideComment(tokenSpan, comments))
                     {
-                        token = Scan(currentText, currentOffset, currentText.Length - currentOffset);
-                        if (token != null)
-                        {
-                            var start = span.Start.Position + token.StartIndex;
-                            var tokenSpan = new SnapshotSpan(span.Snapshot, start, token.Length);
+                        doxygenCommandSpans.Add(new ClassificationSpan(tokenSpan, _classificationType));
+                    }
 
-                            foreach (var commentSpan in commentSpans)
-                            {
-                                if (tokenSpan.OverlapsWith(commentSpan.Span))
-                                {
-                                    result.Add(new ClassificationSpan(tokenSpan, _classificationType));
-                                    break;
-                                }
-                            }
-
-                            currentOffset = token.Length + token.StartIndex;
-                        }
-                    } while (token != null && currentOffset < currentText.Length);
+                    currentOffset = token.Length + token.StartIndex;
                 }
-            }
+            } while (token != null && currentOffset < currentText.Length);
 
-            return result;
+            return doxygenCommandSpans;
         }
 
         private Token Scan(string text, int startIndex, int length)
@@ -121,40 +112,6 @@
         private bool IdentifierChar(char c)
         {
             return (char.IsPunctuation(c) || char.IsWhiteSpace(c) || char.IsSymbol(c)) == false;
-        }
-
-        private sealed class CommentHelper
-        {
-            private Type _colorerType;
-            private object _colorer;
-
-            public CommentHelper(ITextBuffer buffer)
-            {
-                _colorerType = Type.GetType("Microsoft.VisualC.CppColorer, Microsoft.VisualC.Editor.Implementation, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a");
-                buffer.Properties.TryGetProperty(_colorerType, out _colorer);
-            }
-
-            public bool Available
-            {
-                get { return _colorer != null; }
-            }
-
-            private IList<ClassificationSpan> GetClassificationSpans(SnapshotSpan classifySpan)
-            {
-                return ((IClassifier)_colorer).GetClassificationSpans(classifySpan);
-            }
-
-            public IList<ClassificationSpan> GetCommentSpans(SnapshotSpan classifySpan)
-            {
-                if (!Available)
-                {
-                    throw new InvalidOperationException();
-                }
-
-                return GetClassificationSpans(classifySpan)
-                        .Where(s => s.ClassificationType.Classification == "comment")
-                        .ToList();
-            }
         }
     }
 }
