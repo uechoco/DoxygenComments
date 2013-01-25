@@ -1,10 +1,9 @@
-﻿namespace EnhancedCommentsCpp
+﻿namespace Enhanced.Classification
 {
-    internal sealed class Token
+    public class DoxygenCommandToken
     {
         public int StartIndex;
         public int Length;
-        public TokenKind TokenKind;
         public string Text;
     }
 }

@@ -71,23 +71,18 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CppClassifier.cs" />
-    <Compile Include="Doxygen.cs" />
-    <Compile Include="DoxygenCommandClassifierBase.cs" />
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="DoxygenCommandFormat.cs" />
     <Compile Include="EnhancedCommentsCppProvider.cs" />
     <Compile Include="DoxygenCommandClassificationDefinition.cs" />
-    <Compile Include="DoxygenCommandClassifier.cs" />
-    <Compile Include="Formats.cs" />
-    <Compile Include="ICppClassifier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
-    <Compile Include="Token.cs" />
-    <Compile Include="TokenKind.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="source.extension.vsixmanifest">
@@ -110,6 +105,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Enhanced\Enhanced.csproj">
+      <Project>{547ed68f-1e4c-408e-b405-cf0aa923ed1b}</Project>
+      <Name>Enhanced</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />

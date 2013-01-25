@@ -1,4 +1,4 @@
-﻿namespace EnhancedCommentsCpp
+﻿namespace Enhanced.Classification
 {
     using Microsoft.VisualStudio.Text;
     using Microsoft.VisualStudio.Text.Classification;
@@ -7,7 +7,7 @@
     using System.Linq;
 
     /// <summary>Wrapper around Microsoft's internal classifier for C++.</summary>
-    internal class CppClassifier : ICppClassifier
+    internal sealed class CppClassifier : ICppClassifier
     {
         private readonly IClassifier colorer;
 
@@ -31,7 +31,7 @@
             this.colorer = buffer.Properties.PropertyList
                     .Select(p => p.Value as IClassifier)
                     .Where(i => i != null)
-                    .Where(i => i.GetType() != typeof(DoxygenCommandClassifier))
+                    .Where(i => i.GetType().IsSubclassOf(typeof(DoxygenCommandClassifierBase)) == false)
                     .Where(i => i.GetType().FullName == "Microsoft.VisualC.CppColorer")
                     .FirstOrDefault();
         }

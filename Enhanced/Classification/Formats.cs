@@ -1,6 +1,6 @@
-﻿namespace EnhancedCommentsCpp
+﻿namespace Enhanced.Classification
 {
-    internal static class Formats
+    public static class Formats
     {
         public const string DoxygenCommand = "doxygen_command";
         public const string Comment = "comment";

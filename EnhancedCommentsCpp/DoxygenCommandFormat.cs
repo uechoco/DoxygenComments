@@ -1,5 +1,6 @@
 ﻿namespace EnhancedCommentsCpp
 {
+    using Enhanced.Classification;
     using EnhancedCommentsCpp.Resources;
     using Microsoft.VisualStudio.Text.Classification;
     using Microsoft.VisualStudio.Utilities;

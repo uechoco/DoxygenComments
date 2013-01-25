@@ -3,6 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnhancedCommentsCpp", "EnhancedCommentsCpp\EnhancedCommentsCpp.csproj", "{6C0D4CA2-3A54-4FFC-A8E5-BF3CEEBACF6F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enhanced", "Enhanced\Enhanced.csproj", "{547ED68F-1E4C-408E-B405-CF0AA923ED1B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F7DB41E5-C708-49F1-8127-08F8570EF94C}"
+	ProjectSection(SolutionItems) = preProject
+		GlobalAssemblyInfo.cs = GlobalAssemblyInfo.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +20,10 @@ Global
 		{6C0D4CA2-3A54-4FFC-A8E5-BF3CEEBACF6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C0D4CA2-3A54-4FFC-A8E5-BF3CEEBACF6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C0D4CA2-3A54-4FFC-A8E5-BF3CEEBACF6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{547ED68F-1E4C-408E-B405-CF0AA923ED1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{547ED68F-1E4C-408E-B405-CF0AA923ED1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{547ED68F-1E4C-408E-B405-CF0AA923ED1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{547ED68F-1E4C-408E-B405-CF0AA923ED1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

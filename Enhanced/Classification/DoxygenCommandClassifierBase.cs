@@ -1,11 +1,14 @@
-﻿namespace EnhancedCommentsCpp
+﻿namespace Enhanced.Classification
 {
     using Microsoft.VisualStudio.Text;
     using Microsoft.VisualStudio.Text.Classification;
     using System;
     using System.Collections.Generic;
 
-    internal abstract class DoxygenCommandClassifierBase : IClassifier
+    /// <summary>
+    /// Base class for Doxygen command classifiers.
+    /// </summary>
+    public abstract class DoxygenCommandClassifierBase : IClassifier
     {
         /// <summary>Ocurs when the classification of a span of text has changed.</summary>
         public event EventHandler<ClassificationChangedEventArgs> ClassificationChanged;
@@ -65,7 +68,8 @@
         /// A list of <see cref="Microsoft.VisualStudio.Text.Classification.ClassificationSpan"/> objects
         /// that intersect with the given range.
         /// </returns>
-        protected abstract IList<ClassificationSpan> GetDoxygenCommandSpans(SnapshotSpan span, IEnumerable<ClassificationSpan> comments);
+        protected abstract IList<ClassificationSpan> GetDoxygenCommandSpans(SnapshotSpan span,
+            IEnumerable<ClassificationSpan> comments);
 
         /// <summary>
         /// Returns classifier that can classify C++ code.

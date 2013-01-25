@@ -1,11 +1,11 @@
-﻿namespace EnhancedCommentsCpp
+﻿namespace Enhanced.Classification
 {
     using Microsoft.VisualStudio.Text;
     using Microsoft.VisualStudio.Text.Classification;
     using System.Collections.Generic;
 
     /// <summary>Classifier for C++ code.</summary>
-    internal interface ICppClassifier : IClassifier
+    public interface ICppClassifier : IClassifier
     {
         /// <summary>
         /// Gets all the <see cref="Microsoft.VisualStudio.Text.Classification.ClassificationSpan"/> objects

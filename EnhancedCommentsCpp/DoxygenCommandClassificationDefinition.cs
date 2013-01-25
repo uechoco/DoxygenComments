@@ -3,6 +3,7 @@
     using System.ComponentModel.Composition;
     using Microsoft.VisualStudio.Text.Classification;
     using Microsoft.VisualStudio.Utilities;
+    using Enhanced.Classification;
 
     internal static class DoxygenCommandClassificationDefinition
     {
