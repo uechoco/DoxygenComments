@@ -11,8 +11,10 @@
     {
         private readonly IClassifier colorer;
 
+#pragma warning disable 67
         /// <summary>Ocurs when the classification of a span of text has changed.</summary>
         public event EventHandler<ClassificationChangedEventArgs> ClassificationChanged;
+#pragma warning restore 67
 
         /// <summary>
         /// Gets value indicating whether Microsoft's internal classifier for C++ is avalable. 

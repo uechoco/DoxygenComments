@@ -8,15 +8,18 @@
 
     [Export(typeof(IClassifierProvider))]
     [ContentType("C/C++")]
-    internal sealed class EnhancedCommentsCppProvider : IClassifierProvider
+    internal sealed class DoxygenClassifierProvider : IClassifierProvider
     {
         [Import]
         internal IClassificationTypeRegistryService ClassificationRegistry = null;
 
+        [Import]
+        internal IParsersManager ParsersManager = null;
+
         public IClassifier GetClassifier(ITextBuffer buffer)
         {
             return buffer.Properties.GetOrCreateSingletonProperty<DoxygenCommandClassifier>(
-                delegate { return new DoxygenCommandClassifier(ClassificationRegistry); });
+                delegate { return new DoxygenCommandClassifier(ClassificationRegistry, ParsersManager); });
         }
     }
 }

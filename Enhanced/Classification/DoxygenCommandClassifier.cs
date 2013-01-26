@@ -7,15 +7,17 @@
     using System.Collections.Generic;
     using Enhanced.Doxygen;
 
-    public sealed class DoxygenCommandClassifier : DoxygenCommandClassifierBase
+    internal sealed class DoxygenCommandClassifier : DoxygenCommandClassifierBase
     {
         private readonly IClassificationType classificationType;
         private readonly string[] commands;
+        private readonly IParsersManager parsersManager;
 
-        public DoxygenCommandClassifier(IClassificationTypeRegistryService registry)
+        public DoxygenCommandClassifier(IClassificationTypeRegistryService registry, IParsersManager parsersManager)
         {
             this.classificationType = registry.GetClassificationType(FormatNames.DoxygenCommand);
             this.commands = Commands.GetCommandsSortedByLength().ToArray();
+            this.parsersManager = parsersManager;
         }
 
         /// <summary>
@@ -30,99 +32,45 @@
         /// </returns>
         protected override IList<ClassificationSpan> GetDoxygenCommandSpans(SnapshotSpan span, IEnumerable<ClassificationSpan> comments)
         {
-            var doxygenCommandSpans = new List<ClassificationSpan>();
+            var spans = new List<ClassificationSpan>();
             var currentText = span.GetText();
             var currentOffset = 0;
+            var parsers = parsersManager.GetNames();
 
-            // Scan the current span for all tokens.
-            DoxygenCommandToken token = null;
+            var found = false;
+            var tokens = new List<Token>();
             do
             {
-                token = Scan(currentText, currentOffset, currentText.Length - currentOffset);
-                if (token != null)
+                found = false;
+                foreach (var parserName in parsers)
                 {
-                    var start = span.Start.Position + token.StartIndex;
-                    var tokenSpan = new SnapshotSpan(span.Snapshot, start, token.Length);
-
-                    if (this.IsInsideComment(tokenSpan, comments))
+                    var parser = parsersManager.GetParser(parserName);
+                    var lastIndex = parser.Parse(currentText, currentOffset, tokens);
+                    if (lastIndex != currentOffset)
                     {
-                        doxygenCommandSpans.Add(new ClassificationSpan(tokenSpan, this.classificationType));
-                    }
-
-                    currentOffset = token.Length + token.StartIndex;
-                }
-            } while (token != null && currentOffset < currentText.Length);
-
-            return doxygenCommandSpans;
-        }
-
-        private DoxygenCommandToken Scan(string text, int startIndex, int length)
-        {
-            DoxygenCommandToken token = null;
-            var index = startIndex;
-            while (index < text.Length)
-            {
-                bool found = false;
-                foreach (var cmd in this.commands)
-                {
-                    if (IsToken(text, cmd, index))
-                    {
-                        var nextCharIndex = index + cmd.Length + 1;
-                        if (nextCharIndex < text.Length)
-                        {
-                            if (IdentifierChar(text[nextCharIndex]))
-                            {
-                                continue;
-                            }
-                        }
-
-                        token = new DoxygenCommandToken
-                        {
-                            Length = cmd.Length + 1,
-                            StartIndex = index,
-                        };
-
+                        // Found
+                        currentOffset = lastIndex;
                         found = true;
                         break;
                     }
+                    else
+                    {
+                        // Not found
+                    }
                 }
+            } while (found && currentOffset < currentText.Length);
 
-                if (found)
-                {
-                    break;
-                }
-
-                index++;
-            }
-
-            return token;
-        }
-
-        private bool IsToken(string text, string token, int startIndex)
-        {
-            var isToken = false;
-
-            var t1 = "\\" + token;
-            var t2 = "@" + token;
-
-            if (text.Length >= startIndex + t1.Length)
+            foreach (var token in tokens)
             {
-                var i = text.IndexOf(t1, startIndex, t1.Length);
-                isToken = i == startIndex;
-
-                if (!isToken)
+                var start = span.Start.Position + token.Start;
+                var tokenSpan = new SnapshotSpan(span.Snapshot, start, token.Length);
+                if (this.IsInsideComment(tokenSpan, comments))
                 {
-                    i = text.IndexOf(t2, startIndex, t2.Length);
-                    isToken = i == startIndex;
+                    spans.Add(new ClassificationSpan(tokenSpan, token.ClassificationType));
                 }
             }
 
-            return isToken;
-        }
-
-        private bool IdentifierChar(char c)
-        {
-            return (char.IsPunctuation(c) || char.IsWhiteSpace(c) || char.IsSymbol(c)) == false;
+            return spans;
         }
     }
 }

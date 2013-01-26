@@ -1,45 +1,69 @@
-﻿//namespace Enhanced.Classification.Doxygen
-//{
-//    using Microsoft.VisualStudio.Text;
-//    using Microsoft.VisualStudio.Text.Classification;
-//    using System.Collections.Generic;
+﻿namespace Enhanced.Classification.Doxygen
+{
+    using Enhanced.Doxygen;
+    using Microsoft.VisualStudio.Text.Classification;
+    using System;
+    using System.Collections.Generic;
+    using System.Text.RegularExpressions;
 
-//    interface IParser
-//    {
-//        IEnumerable<Token> Parse(string text, int start);
-//    }
+    [Parser(Commands.Param)]
+    internal class ParamParser : IParser
+    {
+        private const string Pattern = @"^*(?<command>[@\\]param)\s*(?<direction>(?:\[out])|(?:\[in])|(?:\[in,\s*out]))?\s+(?<argname>\w+\b)?";
+        private readonly IClassificationType commandCT;
+        private readonly IClassificationType directionCT;
+        private readonly IClassificationType argnameCT;
+        private readonly Regex regex;
 
-//    class Token
-//    {
-//        public string Name;
-//        public string Value;
-//        public int Start;
-//        public int End;
-//        Token Child;
-//    }
+        public ParamParser(IClassificationTypeRegistryService registry)
+        {
+            this.commandCT = registry.GetClassificationType(FormatNames.DoxygenCommand);
+            this.directionCT = registry.GetClassificationType(FormatNames.DoxygenParamDirection);
+            this.argnameCT = registry.GetClassificationType(FormatNames.DoxygenParamArgName);
+            this.regex = new Regex(Pattern, 
+                RegexOptions.CultureInvariant |
+                RegexOptions.Compiled |
+                RegexOptions.Singleline);
+        }
 
-//    public class DoxygenParser
-//    {
-//        IEnumerable<IParser> parsers;
+        public int Parse(string text, int start, IList<Token> tokens)
+        {
+            var match = this.regex.Match(text, start);
 
-//        public IEnumerable<Token> Parse(string text)
-//        {
-//            foreach (var parser in parsers)
-//            {
-//                var token = parser.Parse(text, 1);
-//                if (token != null)
-//                {
-//                }
-//            }
-//            return null;
-//        }
-//    }
+            var command = match.Groups["command"];
+            var direction = match.Groups["direction"];
+            var argname = match.Groups["argname"];
 
-//    public class ParamParser
-//    {
-//        public IEnumerable<Token> Parse(string text, int start)
-//        {
-//            return null;
-//        }
-//    }
-//}
+            var indexes = new int[3];
+            indexes[0] = AddToken(tokens, command, this.commandCT);
+            indexes[1] = AddToken(tokens, direction, this.directionCT);
+            indexes[2] = AddToken(tokens, argname, this.argnameCT);
+
+            var lastIndex = Math.Max(indexes[0], Math.Max(indexes[1], indexes[2]));
+            if (lastIndex == -1)
+            {
+                lastIndex = start;
+            }
+            return lastIndex;
+        }
+
+        private int AddToken(IList<Token> tokens, Group g, IClassificationType ct)
+        {
+            var lastIndex = -1;
+            if (g.Success)
+            {
+                var token = new Token()
+                {
+                    Start = g.Index,
+                    Length = g.Length,
+                    ClassificationType = ct
+                };
+
+                tokens.Add(token);
+                lastIndex = token.Start + token.Length;
+            }
+
+            return lastIndex;
+        }
+    }
+}

@@ -7,16 +7,16 @@
     using System.ComponentModel.Composition;
     using System.Windows.Media;
 
-    [Export(typeof(EditorFormatDefinition))]
-    [ClassificationType(ClassificationTypeNames = FormatNames.DoxygenCommand)]
-    [Name(FormatNames.DoxygenCommand)]
     [UserVisible(true)]
     [Order(Before = Priority.High)]
-    internal sealed class DoxygenCommandFormat : ClassificationFormatDefinition
+    [Export(typeof(EditorFormatDefinition))]
+    [Name(FormatNames.DoxygenParamDirection)]
+    [ClassificationType(ClassificationTypeNames = FormatNames.DoxygenParamDirection)]
+    internal sealed class DoxygenParamDirection : ClassificationFormatDefinition
     {
-        public DoxygenCommandFormat()
+        public DoxygenParamDirection()
         {
-            this.DisplayName = Strings.DoxygenCommandDisplayName;
+            this.DisplayName = Strings.DoxygenParamDirectionDisplayName;
             this.ForegroundColor = Colors.BlueViolet;
         }
     }

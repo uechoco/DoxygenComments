@@ -68,5 +68,23 @@ namespace Enhanced.Resources {
                 return ResourceManager.GetString("DoxygenCommandDisplayName", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Doxygen function parameter name.
+        /// </summary>
+        internal static string DoxygenParamArgNameDisplayName {
+            get {
+                return ResourceManager.GetString("DoxygenParamArgNameDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Doxygen function parameter direction.
+        /// </summary>
+        internal static string DoxygenParamDirectionDisplayName {
+            get {
+                return ResourceManager.GetString("DoxygenParamDirectionDisplayName", resourceCulture);
+            }
+        }
     }
 }
