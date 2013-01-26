@@ -71,6 +71,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classification\Doxygen\Parser.cs" />
     <Compile Include="Classification\IParser.cs" />
     <Compile Include="Classification\IParsersManager.cs" />
     <Compile Include="Classification\ParserAttribute.cs" />

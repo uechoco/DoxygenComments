@@ -7,28 +7,24 @@
     using System.Text.RegularExpressions;
 
     [Parser(Commands.Param)]
-    internal class ParamParser : IParser
+    internal class ParamParser : Parser
     {
         private const string Pattern = @"^*(?<command>[@\\]param)\s*(?<direction>(?:\[out])|(?:\[in])|(?:\[in,\s*out]))?\s+(?<argname>\w+\b)?";
         private readonly IClassificationType commandCT;
         private readonly IClassificationType directionCT;
         private readonly IClassificationType argnameCT;
-        private readonly Regex regex;
 
         public ParamParser(IClassificationTypeRegistryService registry)
+            : base(Pattern)
         {
             this.commandCT = registry.GetClassificationType(FormatNames.DoxygenCommand);
             this.directionCT = registry.GetClassificationType(FormatNames.DoxygenParamDirection);
             this.argnameCT = registry.GetClassificationType(FormatNames.DoxygenParamArgName);
-            this.regex = new Regex(Pattern, 
-                RegexOptions.CultureInvariant |
-                RegexOptions.Compiled |
-                RegexOptions.Singleline);
         }
 
-        public int Parse(string text, int start, IList<Token> tokens)
+        public override int Parse(string text, int start, IList<Token> tokens)
         {
-            var match = this.regex.Match(text, start);
+            var match = this.Regex.Match(text, start);
 
             var command = match.Groups["command"];
             var direction = match.Groups["direction"];
@@ -44,25 +40,6 @@
             {
                 lastIndex = start;
             }
-            return lastIndex;
-        }
-
-        private int AddToken(IList<Token> tokens, Group g, IClassificationType ct)
-        {
-            var lastIndex = -1;
-            if (g.Success)
-            {
-                var token = new Token()
-                {
-                    Start = g.Index,
-                    Length = g.Length,
-                    ClassificationType = ct
-                };
-
-                tokens.Add(token);
-                lastIndex = token.Start + token.Length;
-            }
-
             return lastIndex;
         }
     }
