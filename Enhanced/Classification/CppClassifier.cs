@@ -69,7 +69,7 @@
         public IList<ClassificationSpan> GetCommentClassificationSpans(SnapshotSpan span)
         {
             return this.GetClassificationSpans(span)
-                .Where(s => s.ClassificationType.Classification == Formats.Comment)
+                .Where(s => s.ClassificationType.Classification == FormatNames.Comment)
                 .ToList();
         }
     }

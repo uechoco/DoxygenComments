@@ -5,6 +5,7 @@
     using System;
     using System.Linq;
     using System.Collections.Generic;
+    using Enhanced.Doxygen;
 
     public sealed class DoxygenCommandClassifier : DoxygenCommandClassifierBase
     {
@@ -13,8 +14,8 @@
 
         public DoxygenCommandClassifier(IClassificationTypeRegistryService registry)
         {
-            this.classificationType = registry.GetClassificationType(Formats.DoxygenCommand);
-            this.commands = Doxygen.Commands.GetCommandsSortedByLength().ToArray();
+            this.classificationType = registry.GetClassificationType(FormatNames.DoxygenCommand);
+            this.commands = Commands.GetCommandsSortedByLength().ToArray();
         }
 
         /// <summary>

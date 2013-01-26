@@ -1,4 +1,4 @@
-﻿namespace EnhancedCommentsCpp
+﻿namespace Enhanced
 {
     using Enhanced.Classification;
     using Microsoft.VisualStudio.Text;
