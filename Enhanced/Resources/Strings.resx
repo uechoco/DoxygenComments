@@ -118,7 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DoxygenCommandDisplayName" xml:space="preserve">
-    <value>Doxygen Command</value>
+    <value>Doxygen command</value>
+  </data>
+  <data name="DoxygenEmphasizeDisplayName" xml:space="preserve">
+    <value>Doxygen emphasized word</value>
+  </data>
+  <data name="DoxygenGroupNameDisplayName" xml:space="preserve">
+    <value>Doxygen group name</value>
+  </data>
+  <data name="DoxygenGroupTitleDisplayName" xml:space="preserve">
+    <value>Doxygen group title</value>
   </data>
   <data name="DoxygenParamArgNameDisplayName" xml:space="preserve">
     <value>Doxygen function parameter name</value>

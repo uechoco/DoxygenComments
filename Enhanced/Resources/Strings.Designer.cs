@@ -61,11 +61,38 @@ namespace Enhanced.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Doxygen Command.
+        ///   Looks up a localized string similar to Doxygen command.
         /// </summary>
         internal static string DoxygenCommandDisplayName {
             get {
                 return ResourceManager.GetString("DoxygenCommandDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Doxygen emphasized word.
+        /// </summary>
+        internal static string DoxygenEmphasizeDisplayName {
+            get {
+                return ResourceManager.GetString("DoxygenEmphasizeDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Doxygen group name.
+        /// </summary>
+        internal static string DoxygenGroupNameDisplayName {
+            get {
+                return ResourceManager.GetString("DoxygenGroupNameDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Doxygen group title.
+        /// </summary>
+        internal static string DoxygenGroupTitleDisplayName {
+            get {
+                return ResourceManager.GetString("DoxygenGroupTitleDisplayName", resourceCulture);
             }
         }
         

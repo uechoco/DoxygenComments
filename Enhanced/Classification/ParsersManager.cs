@@ -1,7 +1,8 @@
 ﻿namespace Enhanced.Classification
 {
+    using Enhanced.Classification.Doxygen;
+    using Enhanced.Doxygen;
     using Microsoft.VisualStudio.Text.Classification;
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.Composition;
     using System.Linq;
@@ -10,29 +11,27 @@
     [PartCreationPolicy(CreationPolicy.Shared)]
     internal class ParsersManager : IParsersManager
     {
-        private readonly List<string> names = new List<string>();
-        private readonly Dictionary<string, IParser> parsers = new Dictionary<string,IParser>();
+        private readonly List<string> names;
+        private readonly Dictionary<string, IParser> parsers = new Dictionary<string, IParser>();
 
         [ImportingConstructor]
         public ParsersManager(IClassificationTypeRegistryService registry)
         {
-            var thisAssembly = this.GetType().Assembly;
-            var parserTypes = thisAssembly.GetTypes()
-                .Where(t => t.IsAbstract == false)
-                .Where(t => t.CustomAttributes
-                    .FirstOrDefault(a => a.AttributeType == typeof(ParserAttribute)) != null);
-
-            // Now we have parser types
-            foreach (var parserType in parserTypes)
+            var coll = Commands.GetCommandsAndPatterns().ToList();
+            foreach (var i in coll)
             {
-                var parser = (IParser)Activator.CreateInstance(parserType, registry);
-                var attr = (ParserAttribute)parserType.GetCustomAttributes(typeof(ParserAttribute), false)[0];
-                this.parsers.Add(attr.FormatName, parser);
+                var command = i.Item1;
+                var pattern = i.Item2;
+                if (pattern != null)
+                {
+                    var parser = new GenericParser(registry, pattern);
+                    this.parsers.Add(command, parser);
+                }
             }
 
             this.names = (from c in this.parsers.Keys
-                         orderby c.Length descending
-                         select c).ToList();
+                          orderby c.Length descending
+                          select c).ToList();
         }
 
         public IEnumerable<string> GetNames()

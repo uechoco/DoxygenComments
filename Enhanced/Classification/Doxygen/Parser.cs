@@ -2,26 +2,48 @@
 {
     using Microsoft.VisualStudio.Text.Classification;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text.RegularExpressions;
 
     internal abstract class Parser : IParser
     {
-        private readonly Regex regex;
-
-        protected Parser(string pattern)
+        protected abstract IEnumerable<string> Groups
         {
-            this.regex = new Regex(pattern,
-                RegexOptions.CultureInvariant |
-                RegexOptions.Compiled |
-                RegexOptions.Singleline);
+            get;
         }
 
-        protected Regex Regex
+        protected abstract IDictionary<string, IClassificationType> ClassificationTypes
         {
-            get { return this.regex; }
+            get;
         }
 
-        public abstract int Parse(string text, int start, IList<Token> tokens);
+        protected abstract Regex Regex
+        {
+            get;
+        }
+
+        public int Parse(string text, int start, IList<Token> tokens)
+        {
+            var match = this.Regex.Match(text, start);
+
+            var indexes = new List<int>();
+
+            // TODO: match.Success
+
+            foreach (var groupName in this.Groups)
+            {
+                var group = match.Groups[groupName];
+                indexes.Add(AddToken(tokens, group, this.ClassificationTypes[groupName]));
+            }
+
+            var lastIndex = indexes.Max();
+            if (lastIndex == -1)
+            {
+                lastIndex = start;
+            }
+
+            return lastIndex;
+        }
 
         protected int AddToken(IList<Token> tokens, Group g, IClassificationType ct)
         {

@@ -1,7 +1,9 @@
 ﻿namespace Enhanced.Doxygen
 {
-    using System.Linq;
+    using Enhanced.Classification;
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// Provides names for Doxygen commands <see cref="http://www.stack.nl/~dimitri/doxygen/manual/commands.html"/>.
@@ -41,6 +43,10 @@
         ///     page Grouping, sections \defgroup, \ingroup, and \weakgroup.
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]addtogroup)\s+(?<" + FormatNames.DoxygenGroupName +
+                 @">\w+\b)?\s+(?<" + FormatNames.DoxygenGroupTitle +
+                 @">\w+\b)?")]
         public const string Addtogroup = "addtogroup";
 
         /// <summary>
@@ -1352,6 +1358,10 @@
         /// @param  datatype1|datatype2 $paramname description
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]param)\s*(?<" + FormatNames.DoxygenParamDirection +
+                 @">(?:\[out])|(?:\[in])|(?:\[in,\s*out]))?\s+(?<" + FormatNames.DoxygenParamArgName + 
+                 @">\w+\b)?")]
         public const string Param = "param";
 
         /// <summary>
@@ -1576,6 +1586,8 @@
         /// 
         /// This command adds (text) to the LaTeX index.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]addindex)\b")]
         public const string Addindex = "addindex";
 
         /// <summary>
@@ -2005,6 +2017,9 @@
         /// 
         /// Equivalent to \e and \em. To emphasize multiple words use <em>multiple words</em>.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">(?:[@\\]e)|(?:[@\\]em)|(?:[@\\]a))\s+(?<" + FormatNames.DoxygenEmphasize +
+                 @">\w+\b)?")]
         public const string A = "a";
 
         /// <summary>
@@ -2279,6 +2294,9 @@
         /// 
         /// Equivalent to \a and \em. To emphasize multiple words use <em>multiple words</em>.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">(?:[@\\]e)|(?:[@\\]em)|(?:[@\\]a))\s+(?<" + FormatNames.DoxygenEmphasize +
+                 @">\w+\b)?")]
         public const string E = "e";
 
         /// <summary>
@@ -2297,6 +2315,9 @@
         /// 
         /// Equivalent to \a and \e. To emphasize multiple words use <em>multiple words</em>.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">(?:[@\\]e)|(?:[@\\]em)|(?:[@\\]a))\s+(?<" + FormatNames.DoxygenEmphasize +
+                 @">\w+\b)?")]
         public const string Em = "em";
 
         /// <summary>
@@ -2753,17 +2774,27 @@
         /// cases, because it is used to ref to documented entities.
         public const string DoubleColon = "::";
 
-        /// <summary>
-        /// Gets all commands sorted by their length. The first element of the sequence is the longest.
-        /// </summary>
-        /// <returns>Commands sorted by their length.</returns>
-        public static IEnumerable<string> GetCommandsSortedByLength()
+        private static string GetPattern(string fieldName)
         {
-            var commands = typeof(Commands).GetFields().Select(i => (string)i.GetValue(null)).ToList();
-            var sorted = from c in commands
-                         orderby c.Length descending
-                         select c;
-            return sorted.ToList();
+            var field = typeof(Commands).GetField(fieldName);
+            var attrs = field.GetCustomAttributes(typeof(PatternAttribute), false);
+            string pattern = null;
+
+            if (attrs.Length == 1)
+	        {
+                var attr = (PatternAttribute)attrs[0];
+                pattern = attr.Pattern;
+	        }
+
+            return pattern;
+        }
+
+        public static IEnumerable<Tuple<string, string>> GetCommandsAndPatterns()
+        {
+            var collection = typeof(Commands).GetFields()
+                .Select(f => new Tuple<string, string>((string)f.GetValue(null), GetPattern(f.Name)));
+
+            return collection;
         }
 
 

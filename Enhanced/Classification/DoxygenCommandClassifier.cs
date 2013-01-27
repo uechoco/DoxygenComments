@@ -2,21 +2,16 @@
 {
     using Microsoft.VisualStudio.Text;
     using Microsoft.VisualStudio.Text.Classification;
-    using System;
-    using System.Linq;
     using System.Collections.Generic;
-    using Enhanced.Doxygen;
 
     internal sealed class DoxygenCommandClassifier : DoxygenCommandClassifierBase
     {
         private readonly IClassificationType classificationType;
-        private readonly string[] commands;
         private readonly IParsersManager parsersManager;
 
         public DoxygenCommandClassifier(IClassificationTypeRegistryService registry, IParsersManager parsersManager)
         {
             this.classificationType = registry.GetClassificationType(FormatNames.DoxygenCommand);
-            this.commands = Commands.GetCommandsSortedByLength().ToArray();
             this.parsersManager = parsersManager;
         }
 
