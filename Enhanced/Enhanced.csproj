@@ -72,9 +72,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classification\Doxygen\Parser.cs" />
+    <Compile Include="Classification\Formats\DoxygenClassName.cs" />
+    <Compile Include="Classification\Formats\DoxygenDirPath.cs" />
     <Compile Include="Classification\Formats\DoxygenEmphasize.cs" />
     <Compile Include="Classification\Formats\DoxygenGroupName.cs" />
     <Compile Include="Classification\Formats\DoxygenGroupTitle.cs" />
+    <Compile Include="Classification\Formats\DoxygenHeaderFile.cs" />
+    <Compile Include="Classification\Formats\DoxygenHeaderName.cs" />
+    <Compile Include="Classification\Formats\DoxygenMacroName.cs" />
     <Compile Include="Classification\IParser.cs" />
     <Compile Include="Classification\IParsersManager.cs" />
     <Compile Include="Classification\ParserAttribute.cs" />

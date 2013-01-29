@@ -28,10 +28,29 @@
         [Export(typeof(ClassificationTypeDefinition))]
         internal static ClassificationTypeDefinition DoxygenGroupTitle;
 
-        //[Regex(@"^*(?<command>(?:[@\\]e)|(?:[@\\]em)|(?:[@\\]a))\s+(?<word>\w+\b)?")]
         [Name(FormatNames.DoxygenEmphasize)]
         [Export(typeof(ClassificationTypeDefinition))]
         internal static ClassificationTypeDefinition DoxygenEmphasize;
+
+        [Name(FormatNames.DoxygenClassName)]
+        [Export(typeof(ClassificationTypeDefinition))]
+        internal static ClassificationTypeDefinition DoxygenClassName;
+
+        [Name(FormatNames.DoxygenHeaderFile)]
+        [Export(typeof(ClassificationTypeDefinition))]
+        internal static ClassificationTypeDefinition DoxygenHeaderFile;
+
+        [Name(FormatNames.DoxygenHeaderName)]
+        [Export(typeof(ClassificationTypeDefinition))]
+        internal static ClassificationTypeDefinition DoxygenHeaderName;
+
+        [Name(FormatNames.DoxygenMacroName)]
+        [Export(typeof(ClassificationTypeDefinition))]
+        internal static ClassificationTypeDefinition DoxygenMacroName;
+
+        [Name(FormatNames.DoxygenDirPath)]
+        [Export(typeof(ClassificationTypeDefinition))]
+        internal static ClassificationTypeDefinition DoxygenDirPath;
     }
 #pragma warning restore 649
 }

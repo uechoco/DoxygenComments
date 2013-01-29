@@ -8,16 +8,16 @@
     using System.Windows.Media;
 
     [Export(typeof(EditorFormatDefinition))]
-    [ClassificationType(ClassificationTypeNames = FormatNames.DoxygenGroupTitle)]
-    [Name(FormatNames.DoxygenGroupTitle)]
+    [ClassificationType(ClassificationTypeNames = FormatNames.DoxygenClassName)]
+    [Name(FormatNames.DoxygenClassName)]
     [UserVisible(true)]
     [Order(Before = Priority.High)]
-    internal class DoxygenGroupTitle : ClassificationFormatDefinition
+    internal sealed class DoxygenClassName : ClassificationFormatDefinition
     {
-        public DoxygenGroupTitle()
+        public DoxygenClassName()
         {
-            this.DisplayName = Strings.DoxygenGroupTitleDisplayName;
-            this.ForegroundColor = Colors.Gray;
+            this.DisplayName = Strings.DoxygenClassNameDisplayName;
+            this.ForegroundColor = Colors.Teal;
         }
     }
 }

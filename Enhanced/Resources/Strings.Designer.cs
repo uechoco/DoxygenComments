@@ -61,11 +61,29 @@ namespace Enhanced.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Doxygen class name.
+        /// </summary>
+        internal static string DoxygenClassNameDisplayName {
+            get {
+                return ResourceManager.GetString("DoxygenClassNameDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Doxygen command.
         /// </summary>
         internal static string DoxygenCommandDisplayName {
             get {
                 return ResourceManager.GetString("DoxygenCommandDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Doxygen \dir path.
+        /// </summary>
+        internal static string DoxygenDirPathDisplayName {
+            get {
+                return ResourceManager.GetString("DoxygenDirPathDisplayName", resourceCulture);
             }
         }
         
@@ -93,6 +111,33 @@ namespace Enhanced.Resources {
         internal static string DoxygenGroupTitleDisplayName {
             get {
                 return ResourceManager.GetString("DoxygenGroupTitleDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Doxygen header file name.
+        /// </summary>
+        internal static string DoxygenHeaderFileDisplayName {
+            get {
+                return ResourceManager.GetString("DoxygenHeaderFileDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Doxygen header name.
+        /// </summary>
+        internal static string DoxygenHeaderNameDisplayName {
+            get {
+                return ResourceManager.GetString("DoxygenHeaderNameDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Doxygen #define macro name.
+        /// </summary>
+        internal static string DoxygenMacroNameDisplayName {
+            get {
+                return ResourceManager.GetString("DoxygenMacroNameDisplayName", resourceCulture);
             }
         }
         

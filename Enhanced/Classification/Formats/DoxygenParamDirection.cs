@@ -17,7 +17,7 @@
         public DoxygenParamDirection()
         {
             this.DisplayName = Strings.DoxygenParamDirectionDisplayName;
-            this.ForegroundColor = Colors.BlueViolet;
+            this.ForegroundColor = Colors.Gray;
         }
     }
 }
