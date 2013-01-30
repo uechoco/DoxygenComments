@@ -72,22 +72,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classification\Doxygen\Parser.cs" />
-    <Compile Include="Classification\Formats\DoxygenClassName.cs" />
-    <Compile Include="Classification\Formats\DoxygenDirPath.cs" />
-    <Compile Include="Classification\Formats\DoxygenEmphasize.cs" />
-    <Compile Include="Classification\Formats\DoxygenGroupName.cs" />
-    <Compile Include="Classification\Formats\DoxygenGroupTitle.cs" />
-    <Compile Include="Classification\Formats\DoxygenHeaderFile.cs" />
-    <Compile Include="Classification\Formats\DoxygenHeaderName.cs" />
-    <Compile Include="Classification\Formats\DoxygenMacroName.cs" />
+    <Compile Include="Classification\Formats\DoxygenCommandArgFour.cs" />
+    <Compile Include="Classification\Formats\DoxygenCommandArgOne.cs" />
+    <Compile Include="Classification\Formats\DoxygenCommandArgThree.cs" />
+    <Compile Include="Classification\Formats\DoxygenCommandArgTwo.cs" />
     <Compile Include="Classification\IParser.cs" />
     <Compile Include="Classification\IParsersManager.cs" />
     <Compile Include="Classification\ParserAttribute.cs" />
     <Compile Include="Classification\ParsersManager.cs" />
     <Compile Include="Classification\PatternAttribute.cs" />
     <Compile Include="Classification\Token.cs" />
-    <Compile Include="Classification\Formats\DoxygenParamArgName.cs" />
-    <Compile Include="Classification\Formats\DoxygenParamDirection.cs" />
     <Compile Include="DoxygenClassifierProvider.cs" />
     <Compile Include="FormatDefinitions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

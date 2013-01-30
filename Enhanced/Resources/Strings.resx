@@ -117,37 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DoxygenClassNameDisplayName" xml:space="preserve">
-    <value>Doxygen class name</value>
+  <data name="DoxygenCommandArgOneDisplayName" xml:space="preserve">
+    <value>Doxygen command first argument</value>
+  </data>
+  <data name="DoxygenCommandArgThreeDisplayName" xml:space="preserve">
+    <value>Doxygen command third argument</value>
+  </data>
+  <data name="DoxygenCommandArgTwoDisplayName" xml:space="preserve">
+    <value>Doxygen command second argument</value>
   </data>
   <data name="DoxygenCommandDisplayName" xml:space="preserve">
     <value>Doxygen command</value>
-  </data>
-  <data name="DoxygenDirPathDisplayName" xml:space="preserve">
-    <value>Doxygen \dir path</value>
-  </data>
-  <data name="DoxygenEmphasizeDisplayName" xml:space="preserve">
-    <value>Doxygen emphasized word</value>
-  </data>
-  <data name="DoxygenGroupNameDisplayName" xml:space="preserve">
-    <value>Doxygen group name</value>
-  </data>
-  <data name="DoxygenGroupTitleDisplayName" xml:space="preserve">
-    <value>Doxygen group title</value>
-  </data>
-  <data name="DoxygenHeaderFileDisplayName" xml:space="preserve">
-    <value>Doxygen header file name</value>
-  </data>
-  <data name="DoxygenHeaderNameDisplayName" xml:space="preserve">
-    <value>Doxygen header name</value>
-  </data>
-  <data name="DoxygenMacroNameDisplayName" xml:space="preserve">
-    <value>Doxygen #define macro name</value>
-  </data>
-  <data name="DoxygenParamArgNameDisplayName" xml:space="preserve">
-    <value>Doxygen function parameter name</value>
-  </data>
-  <data name="DoxygenParamDirectionDisplayName" xml:space="preserve">
-    <value>Doxygen function parameter direction</value>
   </data>
 </root>
