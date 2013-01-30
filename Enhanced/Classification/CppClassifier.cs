@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.Text.Classification;
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
 
     /// <summary>Wrapper around Microsoft's internal classifier for C++.</summary>
@@ -71,7 +72,8 @@
         public IList<ClassificationSpan> GetCommentClassificationSpans(SnapshotSpan span)
         {
             return this.GetClassificationSpans(span)
-                .Where(s => s.ClassificationType.Classification == FormatNames.Comment)
+                .Where(s => s.ClassificationType.Classification == FormatNames.Comment ||
+                            s.ClassificationType.Classification == FormatNames.XmlDocComment)
                 .ToList();
         }
     }
