@@ -5,6 +5,7 @@
     <DisplayName>EnhancedCommentsCpp</DisplayName>
     <Description xml:space="preserve">Visual Studio Editor extension that highlights Doxygen documentation tags inside C++ comments.</Description>
     <License>PackageSpecific\LICENSE.txt</License>
+    <Icon>PackageSpecific\PREVIEW.png</Icon>
     <PreviewImage>PackageSpecific\PREVIEW.png</PreviewImage>
     <Tags>doxygen; syntax-highlighting; c++; cpp; comments; documentation</Tags>
   </Metadata>
