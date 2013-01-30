@@ -1355,10 +1355,11 @@
         /// paragraph. Multiple adjacent \exception commands will be joined into a single paragraph. Each exception
         /// description will start on a new line. The \exception description ends when a blank line or some other
         /// sectioning command is encountered. See section \fn for an example.
+        /// \exception std::out_of_range parameter is out of range.
         /// </summary>
         [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
                  @">[@\\]exception)\s+(?<" + FormatNames.DoxygenCommandArgOne +
-                 @">\w+\b)?\s+(?<" + FormatNames.DoxygenCommandArgTwo +
+                 @">[\w:\._]+\b)?\s+(?<" + FormatNames.DoxygenCommandArgTwo +
                  @">.+)?")]
         public const string Exception = "exception";
 
@@ -1838,7 +1839,6 @@
         /// ALIASES += "reminder=\xrefitem reminders \"Reminder\" \"Reminders\"" 
         /// 
         /// Note the use of escaped quotes for the second and third argument of the \xrefitem command.
-
         /// </summary>
         public const string Xrefitem = "xrefitem";
 
@@ -1865,6 +1865,9 @@
         ///     section \ref.
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">(?:[@\\]anchor))\s+(?<" + FormatNames.DoxygenCommandArgOne +
+                 @">\w+\b)?")]
         public const string Anchor = "anchor";
 
         /// <summary>
@@ -1887,6 +1890,8 @@
         ///     section \link.
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]endlink)\b")]
         public const string Endlink = "endlink";
 
         /// <summary>
@@ -2266,7 +2271,7 @@
         /// </summary>
         [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
                  @">[@\\]snippet)\s+(?<" + FormatNames.DoxygenCommandArgOne +
-                 @">\w+\b)?\s+(?<" + FormatNames.DoxygenCommandArgTwo +
+                 @">[\w-\.\\/]+\b)?\s+(?<" + FormatNames.DoxygenCommandArgTwo +
                  @">.+)?")]
         public const string Snippet = "snippet";
 
@@ -2376,6 +2381,9 @@
         /// Displays the argument <word> using a bold font. Equivalent to <b>word</b>. To put multiple words in bold
         /// use <b>multiple words</b>.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">(?:[@\\]b))\s+(?<" + FormatNames.DoxygenCommandArgOne +
+                 @">\w+\b)?")]
         public const string B = "b";
 
         /// <summary>
@@ -2395,6 +2403,9 @@
         /// 
         /// Equivalent to \p To have multiple words in typewriter font use <tt>multiple words</tt>.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">(?:[@\\]c))\s+(?<" + FormatNames.DoxygenCommandArgOne +
+                 @">\w+\b)?")]
         public const string C = "c";
 
         /// <summary>
@@ -2464,6 +2475,9 @@
         /// 
         /// See \copybrief and \copydetails for copying only the brief or detailed part of the comment block.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]copydoc)\s+(?<" + FormatNames.DoxygenCommandArgOne +
+                 @">.+)?")]
         public const string Copydoc = "copydoc";
 
         /// <summary>
@@ -2472,6 +2486,9 @@
         /// Works in a similar way as \copydoc but will only copy the brief description, not the detailed
         /// documentation.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]copybrief)\s+(?<" + FormatNames.DoxygenCommandArgOne +
+                 @">.+)?")]
         public const string Copybrief = "copybrief";
 
         /// <summary>
@@ -2480,6 +2497,9 @@
         /// Works in a similar way as \copydoc but will only copy the detailed documentation, not the brief
         /// description.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]copydetails)\s+(?<" + FormatNames.DoxygenCommandArgOne +
+                 @">.+)?")]
         public const string Copydetails = "copydetails";
 
         /// <summary>
@@ -2508,6 +2528,8 @@
         /// (in the HTML output).
         /// */
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]dot)\b")]
         public const string Dot = "dot";
 
         /// <summary>
@@ -2555,6 +2577,8 @@
         ///     section \mscfile.
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]msc)\b")]
         public const string Msc = "msc";
 
         /// <summary>
@@ -2571,6 +2595,10 @@
         /// This argument has to be specified between quotes even if it does not contain any spaces. The quotes are
         /// stripped before the caption is displayed.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]dotfile)\s+(?<" + FormatNames.DoxygenCommandArgOne +
+                 @">[\w-\.\\/]+\b)?\s+(?<" + FormatNames.DoxygenCommandArgTwo +
+                 @">.+)?")]
         public const string Dotfile = "dotfile";
 
         /// <summary>
@@ -2592,6 +2620,10 @@
         ///     section \msc.
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]mscfile)\s+(?<" + FormatNames.DoxygenCommandArgOne +
+                 @">[\w-\.\\/]+\b)?\s+(?<" + FormatNames.DoxygenCommandArgTwo +
+                 @">.+)?")]
         public const string Mscfile = "mscfile";
 
         /// <summary>
@@ -2645,6 +2677,8 @@
         ///     section \code
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]endcode)\b")]
         public const string Endcode = "endcode";
 
         /// <summary>
@@ -2652,6 +2686,8 @@
         /// 
         /// Ends a blocks that was started with \dot.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]enddot)\b")]
         public const string Enddot = "enddot";
 
         /// <summary>
@@ -2659,6 +2695,8 @@
         /// 
         /// Ends a blocks that was started with \msc.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]endmsc)\b")]
         public const string Endmsc = "endmsc";
 
         /// <summary>
@@ -2670,6 +2708,8 @@
         ///     section \htmlonly.
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]endhtmlonly)\b")]
         public const string Endhtmlonly = "endhtmlonly";
 
         /// <summary>
@@ -2681,6 +2721,8 @@
         ///     section \latexonly.
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]endlatexonly)\b")]
         public const string Endlatexonly = "endlatexonly";
 
         /// <summary>
@@ -2692,6 +2734,8 @@
         ///     section \manonly.
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]endmanonly)\b")]
         public const string Endmanonly = "endmanonly";
 
         /// <summary>
@@ -2703,6 +2747,8 @@
         ///     section \rtfonly.
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]endrtfonly)\b")]
         public const string Endrtfonly = "endrtfonly";
 
         /// <summary>
@@ -2714,6 +2760,8 @@
         ///     section \verbatim.
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]endverbatim)\b")]
         public const string Endverbatim = "endverbatim";
 
         /// <summary>
@@ -2725,6 +2773,8 @@
         ///     section \xmlonly.
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]endxmlonly)\b")]
         public const string Endxmlonly = "endxmlonly";
 
         /// <summary>
@@ -2736,6 +2786,8 @@
         ///     section formulas for an example.
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]f\$)\s+")]
         public const string FDollar = "f$";
 
         /// <summary>
@@ -2747,6 +2799,8 @@
         ///     section \f] and section formulas.
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]f\[)\s+")]
         public const string FLeftSquareBracket = "f[";
 
         /// <summary>
@@ -2758,6 +2812,8 @@
         ///     section \f[ and section formulas.
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]f])\s+")]
         public const string FRightSquareBracket = "f]";
 
         /// <summary>
@@ -2773,6 +2829,8 @@
         ///     section \f} and section formulas.
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]f\{)\s+")]
         public const string FLeftCurlyBracket = "f{";
 
         /// <summary>
@@ -2784,6 +2842,8 @@
         ///     section \f{ and section formulas.
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]f})\s+")]
         public const string FRightCurlyBracket = "f}";
 
         /// <summary>
@@ -2803,6 +2863,8 @@
         ///     section \manonly, section \latexonly, and section \rtfonly.
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]htmlonly)\b")]
         public const string Htmlonly = "htmlonly";
 
         /// <summary>
@@ -2865,6 +2927,8 @@
         ///     section \rtfonly, section \xmlonly, section \manonly, and section \htmlonly.
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]latexonly)\b")]
         public const string Latexonly = "latexonly";
 
         /// <summary>
@@ -2880,6 +2944,8 @@
         ///     section \htmlonly, section \xmlonly, section \rtfonly, and section \latexonly.
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]manonly)\b")]
         public const string Manonly = "manonly";
 
         /// <summary>
@@ -2912,6 +2978,8 @@
         /// 
         /// Equivalent to \arg
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]li)\b")]
         public const string Li = "li";
 
         /// <summary>
@@ -2919,6 +2987,8 @@
         /// 
         /// Forces a new line. Equivalent to <br> and inspired by the printf function.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]n)\b")]
         public const string N = "n";
 
         /// <summary>
@@ -2937,6 +3007,9 @@
         /// 
         /// Equivalent to \c To have multiple words in typewriter font use <tt>multiple words</tt>.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">(?:[@\\]p))\s+(?<" + FormatNames.DoxygenCommandArgOne +
+                 @">\w+\b)?")]
         public const string P = "p";
 
         /// <summary>
@@ -2953,6 +3026,8 @@
         ///     section \manonly, section \xmlonly, section \latexonly, and section \htmlonly.
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]rtfonly)\b")]
         public const string Rtfonly = "rtfonly";
 
         /// <summary>
@@ -2969,6 +3044,8 @@
         ///     section \code, and section \verbinclude.
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]verbatim)\b")]
         public const string Verbatim = "verbatim";
 
         /// <summary>
@@ -2983,6 +3060,8 @@
         ///     section \manonly, section \rtfonly, section \latexonly, and section \htmlonly.
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]xmlonly)\b")]
         public const string Xmlonly = "xmlonly";
 
         /// <summary>
