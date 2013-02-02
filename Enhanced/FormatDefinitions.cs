@@ -12,45 +12,17 @@
         [Name(FormatNames.DoxygenCommand)]
         internal static ClassificationTypeDefinition DoxygenCommand;
 
-        [Name(FormatNames.DoxygenParamDirection)]
         [Export(typeof(ClassificationTypeDefinition))]
-        internal static ClassificationTypeDefinition DoxygenParamDirection;
+        [Name(FormatNames.DoxygenCommandArgOne)]
+        internal static ClassificationTypeDefinition DoxygenCommandArgOne;
 
-        [Name(FormatNames.DoxygenParamArgName)]
         [Export(typeof(ClassificationTypeDefinition))]
-        internal static ClassificationTypeDefinition DoxygenParamArgName;
+        [Name(FormatNames.DoxygenCommandArgTwo)]
+        internal static ClassificationTypeDefinition DoxygenCommandArgTwo;
 
-        [Name(FormatNames.DoxygenGroupName)]
         [Export(typeof(ClassificationTypeDefinition))]
-        internal static ClassificationTypeDefinition DoxygenGroupName;
-
-        [Name(FormatNames.DoxygenGroupTitle)]
-        [Export(typeof(ClassificationTypeDefinition))]
-        internal static ClassificationTypeDefinition DoxygenGroupTitle;
-
-        [Name(FormatNames.DoxygenEmphasize)]
-        [Export(typeof(ClassificationTypeDefinition))]
-        internal static ClassificationTypeDefinition DoxygenEmphasize;
-
-        [Name(FormatNames.DoxygenClassName)]
-        [Export(typeof(ClassificationTypeDefinition))]
-        internal static ClassificationTypeDefinition DoxygenClassName;
-
-        [Name(FormatNames.DoxygenHeaderFile)]
-        [Export(typeof(ClassificationTypeDefinition))]
-        internal static ClassificationTypeDefinition DoxygenHeaderFile;
-
-        [Name(FormatNames.DoxygenHeaderName)]
-        [Export(typeof(ClassificationTypeDefinition))]
-        internal static ClassificationTypeDefinition DoxygenHeaderName;
-
-        [Name(FormatNames.DoxygenMacroName)]
-        [Export(typeof(ClassificationTypeDefinition))]
-        internal static ClassificationTypeDefinition DoxygenMacroName;
-
-        [Name(FormatNames.DoxygenDirPath)]
-        [Export(typeof(ClassificationTypeDefinition))]
-        internal static ClassificationTypeDefinition DoxygenDirPath;
+        [Name(FormatNames.DoxygenCommandArgThree)]
+        internal static ClassificationTypeDefinition DoxygenCommandArgThree;
     }
 #pragma warning restore 649
 }

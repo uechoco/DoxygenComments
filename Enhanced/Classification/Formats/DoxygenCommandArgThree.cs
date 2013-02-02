@@ -8,15 +8,15 @@
     using System.Windows.Media;
 
     [Export(typeof(EditorFormatDefinition))]
-    [ClassificationType(ClassificationTypeNames = FormatNames.DoxygenHeaderName)]
-    [Name(FormatNames.DoxygenHeaderName)]
+    [ClassificationType(ClassificationTypeNames = FormatNames.DoxygenCommandArgThree)]
+    [Name(FormatNames.DoxygenCommandArgThree)]
     [UserVisible(true)]
     [Order(Before = Priority.High)]
-    internal sealed class DoxygenHeaderName : ClassificationFormatDefinition
+    internal sealed class DoxygenCommandArgThree : ClassificationFormatDefinition
     {
-        public DoxygenHeaderName()
+        public DoxygenCommandArgThree()
         {
-            this.DisplayName = Strings.DoxygenHeaderNameDisplayName;
+            this.DisplayName = Strings.DoxygenCommandArgThreeDisplayName;
             this.ForegroundColor = Colors.Teal;
         }
     }

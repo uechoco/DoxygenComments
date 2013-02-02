@@ -61,11 +61,29 @@ namespace Enhanced.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Doxygen class name.
+        ///   Looks up a localized string similar to Doxygen command first argument.
         /// </summary>
-        internal static string DoxygenClassNameDisplayName {
+        internal static string DoxygenCommandArgOneDisplayName {
             get {
-                return ResourceManager.GetString("DoxygenClassNameDisplayName", resourceCulture);
+                return ResourceManager.GetString("DoxygenCommandArgOneDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Doxygen command third argument.
+        /// </summary>
+        internal static string DoxygenCommandArgThreeDisplayName {
+            get {
+                return ResourceManager.GetString("DoxygenCommandArgThreeDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Doxygen command second argument.
+        /// </summary>
+        internal static string DoxygenCommandArgTwoDisplayName {
+            get {
+                return ResourceManager.GetString("DoxygenCommandArgTwoDisplayName", resourceCulture);
             }
         }
         
@@ -75,87 +93,6 @@ namespace Enhanced.Resources {
         internal static string DoxygenCommandDisplayName {
             get {
                 return ResourceManager.GetString("DoxygenCommandDisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Doxygen \dir path.
-        /// </summary>
-        internal static string DoxygenDirPathDisplayName {
-            get {
-                return ResourceManager.GetString("DoxygenDirPathDisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Doxygen emphasized word.
-        /// </summary>
-        internal static string DoxygenEmphasizeDisplayName {
-            get {
-                return ResourceManager.GetString("DoxygenEmphasizeDisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Doxygen group name.
-        /// </summary>
-        internal static string DoxygenGroupNameDisplayName {
-            get {
-                return ResourceManager.GetString("DoxygenGroupNameDisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Doxygen group title.
-        /// </summary>
-        internal static string DoxygenGroupTitleDisplayName {
-            get {
-                return ResourceManager.GetString("DoxygenGroupTitleDisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Doxygen header file name.
-        /// </summary>
-        internal static string DoxygenHeaderFileDisplayName {
-            get {
-                return ResourceManager.GetString("DoxygenHeaderFileDisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Doxygen header name.
-        /// </summary>
-        internal static string DoxygenHeaderNameDisplayName {
-            get {
-                return ResourceManager.GetString("DoxygenHeaderNameDisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Doxygen #define macro name.
-        /// </summary>
-        internal static string DoxygenMacroNameDisplayName {
-            get {
-                return ResourceManager.GetString("DoxygenMacroNameDisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Doxygen function parameter name.
-        /// </summary>
-        internal static string DoxygenParamArgNameDisplayName {
-            get {
-                return ResourceManager.GetString("DoxygenParamArgNameDisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Doxygen function parameter direction.
-        /// </summary>
-        internal static string DoxygenParamDirectionDisplayName {
-            get {
-                return ResourceManager.GetString("DoxygenParamDirectionDisplayName", resourceCulture);
             }
         }
     }
