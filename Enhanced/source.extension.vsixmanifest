@@ -1,21 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
-  <Metadata>
-    <Identity Id="EnhancedCommentsCpp..b942310b-cfb1-496d-ae3c-65937baed223" Version="1.3" Language="en-US" Publisher="Alexander Manenko" />
-    <DisplayName>EnhancedCommentsCpp</DisplayName>
+<Vsix Version="1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2010">
+  <Identifier Id="EnhancedCommentsCpp..b942310b-cfb1-496d-ae3c-65937baed223">
+    <Name>EnhancedCommentsCpp</Name>
+    <Author>Alexander Manenko</Author>
+    <Version>1.4</Version>
     <Description xml:space="preserve">Visual Studio Editor extension that highlights Doxygen documentation tags inside C++ comments.</Description>
+    <Locale>1033</Locale>
+    <SupportedProducts>
+      <VisualStudio Version="10.0">
+        <Edition>Pro</Edition>
+      </VisualStudio>
+      <VisualStudio Version="11.0">
+        <Edition>Pro</Edition>
+      </VisualStudio>
+    </SupportedProducts>
     <License>PackageSpecific\LICENSE.txt</License>
     <Icon>PackageSpecific\PREVIEW.png</Icon>
     <PreviewImage>PackageSpecific\PREVIEW.png</PreviewImage>
-    <Tags>doxygen; syntax-highlighting; c++; cpp; comments; documentation</Tags>
-  </Metadata>
-  <Installation>
-    <InstallationTarget Version="[11.0,12.0)" Id="Microsoft.VisualStudio.Pro" />
-  </Installation>
-  <Dependencies>
-    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="4.5" />
-  </Dependencies>
-  <Assets>
-    <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%|" />
-  </Assets>
-</PackageManifest>
+    <SupportedFrameworkRuntimeEdition MinVersion="4.0" MaxVersion="4.0" />
+  </Identifier>
+  <References />
+  <Content>
+    <MefComponent>|%CurrentProject%|</MefComponent>
+  </Content>
+</Vsix>
+
