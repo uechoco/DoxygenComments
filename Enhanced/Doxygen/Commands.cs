@@ -2437,6 +2437,9 @@
         ///     section \endcode and section \verbatim.
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]code)\s*(?<" + FormatNames.DoxygenCommandArgOne +
+                 @">\{.*\})?")]
         public const string Code = "code";
 
         /// <summary>
