@@ -1151,9 +1151,11 @@
         /// 
         /// Synonymous to \short.
         /// </summary>
+        //[Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+        //         @">[@\\]brief)\s+(?<" + FormatNames.DoxygenCommandArgOne +
+        //         @">.+)?")]
         [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
-                 @">[@\\]brief)\s+(?<" + FormatNames.DoxygenCommandArgOne +
-                 @">.+)?")]
+                 @">[@\\]brief)\b")]
         public const string Brief = "brief";
 
         /// <summary>
@@ -1616,9 +1618,11 @@
         /// start on a new line. Alternatively, one \remark command may mention several remarks. The \remark command
         /// ends when a blank line or some other sectioning command is encountered.
         /// </summary>
+        //[Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+        //         @">[@\\]remark)\s+(?<" + FormatNames.DoxygenCommandArgOne +
+        //         @">.+)?")]
         [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
-                 @">[@\\]remark)\s+(?<" + FormatNames.DoxygenCommandArgOne +
-                 @">.+)?")]
+                 @">[@\\]remark)\b")]
         public const string Remark = "remark";
 
         /// <summary>
@@ -1626,9 +1630,11 @@
         /// 
         /// Equivalent to \remark.
         /// </summary>
+        //[Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+        //         @">[@\\]remarks)\s+(?<" + FormatNames.DoxygenCommandArgOne +
+        //         @">.+)?")]
         [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
-                 @">[@\\]remarks)\s+(?<" + FormatNames.DoxygenCommandArgOne +
-                 @">.+)?")]
+                 @">[@\\]remarks)\b")]
         public const string Remarks = "remarks";
 
         /// <summary>
@@ -1649,9 +1655,11 @@
         /// commands will be joined into a single paragraph. The \return description ends when a blank line or some
         /// other sectioning command is encountered. See section \fn for an example.
         /// </summary>
+        //[Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+        //         @">[@\\]return)\s+(?<" + FormatNames.DoxygenCommandArgOne +
+        //         @">.+)?")]
         [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
-                 @">[@\\]return)\s+(?<" + FormatNames.DoxygenCommandArgOne +
-                 @">.+)?")]
+                 @">[@\\]return)\b")]
         public const string Return = "return";
 
         /// <summary>
@@ -1659,9 +1667,11 @@
         /// 
         /// Equivalent to \return.
         /// </summary>
+        //[Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+        //         @">[@\\]returns)\s+(?<" + FormatNames.DoxygenCommandArgOne +
+        //         @">.+)?")]
         [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
-                 @">[@\\]returns)\s+(?<" + FormatNames.DoxygenCommandArgOne +
-                 @">.+)?")]
+                 @">[@\\]returns)\b")]
         public const string Returns = "returns";
 
         /// <summary>
@@ -1713,9 +1723,11 @@
         /// 
         /// Equivalent to \brief.
         /// </summary>
+        //[Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+        //         @">[@\\]short)\s+(?<" + FormatNames.DoxygenCommandArgOne +
+        //         @">.+)?")]
         [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
-                 @">[@\\]short)\s+(?<" + FormatNames.DoxygenCommandArgOne +
-                 @">.+)?")]
+                 @">[@\\]short)\b")]
         public const string Short = "short";
 
         /// <summary>
