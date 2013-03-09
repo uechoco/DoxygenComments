@@ -2417,7 +2417,7 @@
         /// </summary>
         [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
                  @">(?:[@\\]c))\s+(?<" + FormatNames.DoxygenCommandArgOne +
-                 @">[A-Za-z\*&:]+\b)?")]
+                 @">[A-Za-z\*&:_]+\b)?")]
         public const string C = "c";
 
         /// <summary>
@@ -3024,7 +3024,7 @@
         /// </summary>
         [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
                  @">(?:[@\\]p))\s+(?<" + FormatNames.DoxygenCommandArgOne +
-                 @">[A-Za-z\*&:]+\b)?")]
+                 @">[A-Za-z\*&:_]+\b)?")]
         public const string P = "p";
 
         /// <summary>
