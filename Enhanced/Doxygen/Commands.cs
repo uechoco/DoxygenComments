@@ -1891,6 +1891,9 @@
         /// formats a fixed representation is used. Note that using this command requires the bibtex tool to be present
         /// in the search path.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">(?:[@\\]cite))\s+(?<" + FormatNames.DoxygenCommandArgOne +
+                 @">\w+\b)?")]
         public const string Cite = "cite";
 
         /// <summary>
@@ -1919,6 +1922,8 @@
         /// 
         /// See section autolink for more information on automatically generated links and valid link-objects.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]link)\b")]
         public const string Link = "link";
 
         /// <summary>
@@ -1934,6 +1939,9 @@
         ///     Section \page for an example of the \ref command.
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">(?:[@\\]ref))\s+(?<" + FormatNames.DoxygenCommandArgOne +
+                 @">\w+\b)?")]
         public const string Ref = "ref";
 
         /// <summary>
@@ -2925,6 +2933,11 @@
         ///     is the case!
         /// 
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">[@\\]image)\s+(?<" + FormatNames.DoxygenCommandArgOne +
+                 @">\w+\b)?\s+(?<" + FormatNames.DoxygenCommandArgTwo +
+                 @">[\w.-]+\b)?\s+(?<" + FormatNames.DoxygenCommandArgThree +
+                 ">\"" + @"?[\w\s]+\b" + "\"?)?")]
         public const string Image = "image";
 
         /// <summary>
@@ -3085,6 +3098,8 @@
         /// This command writes a backslash character (\) to the output. The backslash has to be escaped in some cases
         /// because doxygen uses it to detect commands.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">\\\\)")]
         public const string ReversSolidus = @"\";
 
         /// <summary>
@@ -3093,6 +3108,8 @@
         /// This command writes an at-sign (@) to the output. The at-sign has to be escaped in some cases because
         /// doxygen uses it to detect JavaDoc commands.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">\\@)")]
         public const string CommercialAt = "@";
 
         /// <summary>
@@ -3118,6 +3135,8 @@
         /// This command writes the & character to output. This character has to be escaped because it has a special
         /// meaning in HTML.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">\\&)")]
         public const string Ampersand = "&";
 
         /// <summary>
@@ -3126,6 +3145,8 @@
         /// This command writes the $ character to the output. This character has to be escaped in some cases, because
         /// it is used to expand environment variables.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">\\\$)")]
         public const string DollarSign = "$";
 
         /// <summary>
@@ -3134,6 +3155,8 @@
         /// This command writes the # character to the output. This character has to be escaped in some cases, because
         /// it is used to refer to documented entities.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">\\#)")]
         public const string NumberSign = "#";
 
         /// <summary>
@@ -3142,6 +3165,8 @@
         /// This command writes the < character to the output. This character has to be escaped because it has a
         /// special meaning in HTML.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">\\\<)")]
         public const string LessThanSign = "<";
 
         /// <summary>
@@ -3150,6 +3175,8 @@
         /// This command writes the > character to the output. This character has to be escaped because it has a
         /// special meaning in HTML.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">\\\>)")]
         public const string GreaterThanSign = ">";
 
         /// <summary>
@@ -3158,6 +3185,8 @@
         /// This command writes the % character to the output. This character has to be escaped in some cases, because
         /// it is used to prevent auto-linking to word that is also a documented class or struct.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">\\%)")]
         public const string PercentSign = "%";
 
         /// <summary>
@@ -3166,6 +3195,8 @@
         /// This command writes the " character to the output. This character has to be escaped in some cases, because
         /// it is used in pairs to indicate an unformatted text fragment.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">\\" + "\")")]
         public const string QuatationMark = "\"";
 
         /// <summary>
@@ -3175,6 +3206,8 @@
         /// JAVADOC_AUTOBRIEF is enabled or to prevent starting a numbered list when the dot follows a number at the
         /// start of a line.
         /// </summary>
+        [Pattern(@"^*(?<" + FormatNames.DoxygenCommand +
+                 @">\\\.)")]
         public const string FullStop = ".";
 
         /// <summary>

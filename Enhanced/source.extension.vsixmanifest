@@ -3,9 +3,10 @@
   <Identifier Id="EnhancedCommentsCpp..b942310b-cfb1-496d-ae3c-65937baed223">
     <Name>EnhancedCommentsCpp</Name>
     <Author>Alexander Manenko</Author>
-    <Version>1.7</Version>
+    <Version>1.8</Version>
     <Description xml:space="preserve">Visual Studio Editor extension that highlights Doxygen documentation tags inside C++ comments.</Description>
     <Locale>1033</Locale>
+    <InstalledByMsi>false</InstalledByMsi>
     <SupportedProducts>
       <VisualStudio Version="10.0">
         <Edition>Pro</Edition>
@@ -15,9 +16,9 @@
       </VisualStudio>
     </SupportedProducts>
     <License>PackageSpecific\LICENSE.txt</License>
-    <Icon>PackageSpecific\PREVIEW.png</Icon>
-    <PreviewImage>PackageSpecific\PREVIEW.png</PreviewImage>
-    <SupportedFrameworkRuntimeEdition MinVersion="4.0" MaxVersion="4.0" />
+    <Icon>PackageSpecific\ICON.png</Icon>
+    <PreviewImage>PackageSpecific\PREVIEW400x400.png</PreviewImage>
+    <SupportedFrameworkRuntimeEdition MinVersion="4.0"/>
   </Identifier>
   <References />
   <Content>
