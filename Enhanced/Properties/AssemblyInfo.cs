@@ -2,8 +2,8 @@
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Enhanced")]
-[assembly: AssemblyVersion("1.8.0.0")]
-[assembly: AssemblyFileVersion("1.8.0.0")]
+[assembly: AssemblyVersion("1.9.0.0")]
+[assembly: AssemblyFileVersion("1.9.0.0")]
 [assembly: AssemblyProduct("EnhancedCommentsCpp")]
 [assembly: AssemblyCopyright("Copyright (c) 2013 by Alexander Manenko")]
 [assembly: ComVisible(false)]
