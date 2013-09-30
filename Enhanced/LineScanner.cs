@@ -73,12 +73,12 @@ namespace Enhanced
 
         public char NextChar()
         {
-            return this.ReturnChar(1);
+            return this.GetChar(1);
         }
 
         public char NextNextChar()
         {
-            return this.ReturnChar(2);
+            return this.GetChar(2);
         }
 
         public void AdvanceToEndOfLine()
@@ -101,7 +101,7 @@ namespace Enhanced
             this.textStart = -1;
         }
 
-        private char ReturnChar(int offset)
+        private char GetChar(int offset)
         {
             var c = (char)0;
             if (this.linePosition < this.snapshotLine.Length - offset)
