@@ -19,25 +19,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Enhanced.Classification.Formats
-{
-    using Enhanced.Resources;
-    using Microsoft.VisualStudio.Text.Classification;
-    using Microsoft.VisualStudio.Utilities;
-    using System.ComponentModel.Composition;
-    using System.Windows.Media;
+using System.Reflection;
+using System.Runtime.InteropServices;
 
-    [Export(typeof(EditorFormatDefinition))]
-    [ClassificationType(ClassificationTypeNames = FormatNames.DoxygenCommand)]
-    [Name(FormatNames.DoxygenCommand)]
-    [UserVisible(true)]
-    [Order(Before = Priority.High)]
-    internal sealed class DoxygenCommand : ClassificationFormatDefinition
-    {
-        public DoxygenCommand()
-        {
-            this.DisplayName = Strings.DoxygenCommandDisplayName;
-            this.ForegroundColor = Colors.BlueViolet;
-        }
-    }
-}
+[assembly: AssemblyTitle("Enhanced.UnitTests")]
+[assembly: AssemblyVersion("1.9.0.0")]
+[assembly: AssemblyFileVersion("1.9.0.0")]
+[assembly: AssemblyProduct("EnhancedCommentsCpp.UnitTests")]
+[assembly: AssemblyCopyright("Copyright (c) 2013 by Alexander Manenko")]
+[assembly: ComVisible(false)]

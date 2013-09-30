@@ -1,4 +1,5 @@
-﻿/**
+extensions: .cs
+/**
  * Copyright (c) 2013 Alexander Manenko
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,25 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Enhanced.Classification.Formats
-{
-    using Enhanced.Resources;
-    using Microsoft.VisualStudio.Text.Classification;
-    using Microsoft.VisualStudio.Utilities;
-    using System.ComponentModel.Composition;
-    using System.Windows.Media;
 
-    [Export(typeof(EditorFormatDefinition))]
-    [ClassificationType(ClassificationTypeNames = FormatNames.DoxygenCommand)]
-    [Name(FormatNames.DoxygenCommand)]
-    [UserVisible(true)]
-    [Order(Before = Priority.High)]
-    internal sealed class DoxygenCommand : ClassificationFormatDefinition
-    {
-        public DoxygenCommand()
-        {
-            this.DisplayName = Strings.DoxygenCommandDisplayName;
-            this.ForegroundColor = Colors.BlueViolet;
-        }
-    }
-}
+extensions:  .xml .config .xsd
+<!--
+Sample license text.
+-->

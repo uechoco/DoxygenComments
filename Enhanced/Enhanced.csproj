@@ -45,7 +45,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Formats\DoxygenCommandArgFour.cs" />
     <Compile Include="Formats\DoxygenCommandArgOne.cs" />
     <Compile Include="Formats\DoxygenCommandArgThree.cs" />
     <Compile Include="Formats\DoxygenCommandArgTwo.cs" />
@@ -60,6 +59,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Enhanced.licenseheader" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
