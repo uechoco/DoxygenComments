@@ -30,3 +30,6 @@ $tf*/
 /*.psess
 
 /*.vsp
+packages/
+*.ncrunchsolution
+*.ncrunchproject
