@@ -1,4 +1,4 @@
-﻿namespace Enhanced.Classification
+﻿namespace Enhanced
 {
     public static class FormatNames
     {

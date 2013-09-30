@@ -1,6 +1,5 @@
 ﻿namespace Enhanced
 {
-    using Enhanced.Classification;
     using Microsoft.VisualStudio.Text.Classification;
     using Microsoft.VisualStudio.Utilities;
     using System.ComponentModel.Composition;
