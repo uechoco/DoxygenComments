@@ -45,6 +45,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CommentTextTaggerProvider.cs" />
     <Compile Include="Doxygen.cs" />
     <Compile Include="Formats\DoxygenCommandArgOne.cs" />
     <Compile Include="Formats\DoxygenCommandArgThree.cs" />
