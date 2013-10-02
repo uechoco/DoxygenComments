@@ -56,7 +56,18 @@ namespace Enhanced
 
         public bool EndOfLine
         {
-            get { return this.linePosition >= this.snapshotLine.Length; }
+            get 
+            {
+                return this.linePosition >= this.snapshotLine.Length; 
+            }
+        }
+
+        public int LinePosition
+        {
+            get
+            {
+                return this.linePosition;
+            }
         }
         #endregion
 

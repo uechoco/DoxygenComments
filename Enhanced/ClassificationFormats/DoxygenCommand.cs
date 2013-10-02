@@ -19,30 +19,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Enhanced
+namespace Enhanced.ClassificationFormats
 {
+    using Enhanced.Resources;
     using Microsoft.VisualStudio.Text.Classification;
     using Microsoft.VisualStudio.Utilities;
     using System.ComponentModel.Composition;
+    using System.Windows.Media;
 
-#pragma warning disable 649
-    internal static class FormatDefinitions
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = Names.DoxygenCommand)]
+    [Name(Names.DoxygenCommand)]
+    [UserVisible(true)]
+    [Order(Before = Priority.High)]
+    public sealed class DoxygenCommand : ClassificationFormatDefinition
     {
-        [Export(typeof(ClassificationTypeDefinition))]
-        [Name(FormatNames.DoxygenCommand)]
-        internal static ClassificationTypeDefinition DoxygenCommand;
-
-        [Export(typeof(ClassificationTypeDefinition))]
-        [Name(FormatNames.DoxygenCommandArgOne)]
-        internal static ClassificationTypeDefinition DoxygenCommandArgOne;
-
-        [Export(typeof(ClassificationTypeDefinition))]
-        [Name(FormatNames.DoxygenCommandArgTwo)]
-        internal static ClassificationTypeDefinition DoxygenCommandArgTwo;
-
-        [Export(typeof(ClassificationTypeDefinition))]
-        [Name(FormatNames.DoxygenCommandArgThree)]
-        internal static ClassificationTypeDefinition DoxygenCommandArgThree;
+        public DoxygenCommand()
+        {
+            this.DisplayName = Strings.DoxygenCommandDisplayName;
+            this.ForegroundColor = Colors.BlueViolet;
+        }
     }
-#pragma warning restore 649
 }

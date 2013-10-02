@@ -19,14 +19,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Enhanced
+namespace Enhanced.ClassificationFormats
 {
-    public static class FormatNames
+    using Microsoft.VisualStudio.Text.Classification;
+    using Microsoft.VisualStudio.Utilities;
+    using System.ComponentModel.Composition;
+
+    public static class Definitions
     {
-        public const string Comment = "comment";
-        public const string DoxygenCommand = "DoxygenCommand";
-        public const string DoxygenCommandArgOne = "DoxygenCommandArgOne";
-        public const string DoxygenCommandArgTwo = "DoxygenCommandArgTwo";
-        public const string DoxygenCommandArgThree = "DoxygenCommandArgThree";
+#if DEBUG
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name(Names.DoxygenComment)]
+        public static ClassificationTypeDefinition DoxygenComment = null;
+#endif
+
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name(Names.DoxygenCommand)]
+        public static ClassificationTypeDefinition DoxygenCommand;
+
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name(Names.DoxygenCommandArgOne)]
+        public static ClassificationTypeDefinition DoxygenCommandArgOne;
+
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name(Names.DoxygenCommandArgTwo)]
+        public static ClassificationTypeDefinition DoxygenCommandArgTwo;
+
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name(Names.DoxygenCommandArgThree)]
+        public static ClassificationTypeDefinition DoxygenCommandArgThree;
     }
 }

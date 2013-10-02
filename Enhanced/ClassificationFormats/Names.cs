@@ -19,25 +19,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Enhanced.Classification.Formats
+namespace Enhanced.ClassificationFormats
 {
-    using Enhanced.Resources;
-    using Microsoft.VisualStudio.Text.Classification;
-    using Microsoft.VisualStudio.Utilities;
-    using System.ComponentModel.Composition;
-    using System.Windows.Media;
-
-    [Export(typeof(EditorFormatDefinition))]
-    [ClassificationType(ClassificationTypeNames = FormatNames.DoxygenCommandArgTwo)]
-    [Name(FormatNames.DoxygenCommandArgTwo)]
-    [UserVisible(true)]
-    [Order(Before = Priority.High)]
-    internal sealed class DoxygenCommandArgTwo : ClassificationFormatDefinition
+    public static class Names
     {
-        public DoxygenCommandArgTwo()
-        {
-            this.DisplayName = Strings.DoxygenCommandArgTwoDisplayName;
-            this.ForegroundColor = Colors.Gray;
-        }
+        public const string Comment = "comment";
+        public const string DoxygenComment = "manenko/DoxygenComment";
+        public const string DoxygenCommand = "manenko/DoxygenCommand";
+        public const string DoxygenCommandArgOne = "manenko/DoxygenCommand/ArgOne";
+        public const string DoxygenCommandArgTwo = "manenko/DoxygenCommand/ArgTwo";
+        public const string DoxygenCommandArgThree = "manenko/DoxygenCommand/ArgThree";
     }
 }

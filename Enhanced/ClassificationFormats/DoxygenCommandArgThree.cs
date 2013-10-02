@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Enhanced.Classification.Formats
+namespace Enhanced.ClassificationFormats
 {
     using Enhanced.Resources;
     using Microsoft.VisualStudio.Text.Classification;
@@ -28,15 +28,15 @@ namespace Enhanced.Classification.Formats
     using System.Windows.Media;
 
     [Export(typeof(EditorFormatDefinition))]
-    [ClassificationType(ClassificationTypeNames = FormatNames.DoxygenCommandArgOne)]
-    [Name(FormatNames.DoxygenCommandArgOne)]
+    [ClassificationType(ClassificationTypeNames = Names.DoxygenCommandArgThree)]
+    [Name(Names.DoxygenCommandArgThree)]
     [UserVisible(true)]
     [Order(Before = Priority.High)]
-    internal sealed class DoxygenCommandArgOne : ClassificationFormatDefinition
+    public sealed class DoxygenCommandArgThree : ClassificationFormatDefinition
     {
-        public DoxygenCommandArgOne()
+        public DoxygenCommandArgThree()
         {
-            this.DisplayName = Strings.DoxygenCommandArgOneDisplayName;
+            this.DisplayName = Strings.DoxygenCommandArgThreeDisplayName;
             this.ForegroundColor = Colors.Teal;
         }
     }
