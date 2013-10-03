@@ -27,7 +27,7 @@ namespace Enhanced
     using System.ComponentModel.Composition;
 
     [Export(typeof(ITaggerProvider))]
-    [ContentType(Enhanced.ClassificationFormats.Names.DoxygenComment)]
+    [ContentType(Enhanced.ClassificationFormats.Names.Code)]
     [TagType(typeof(DoxygenCommandTag))]
     public sealed class DoxygenCommandTaggerProvider : ITaggerProvider
     {

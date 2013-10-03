@@ -72,6 +72,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="RulesLoader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Enhanced.licenseheader" />
@@ -80,7 +81,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Rules.txt" />
+    <Content Include="Rules.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="_PackageSpecific\CONFIGURATION.png" />
     <Content Include="_PackageSpecific\ICON.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

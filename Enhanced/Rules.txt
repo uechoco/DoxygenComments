@@ -1,4 +1,4 @@
-﻿a					`	^*(?<DoxygenCommand>[@\\]a\s+(?<DoxygenCommandArgOne>\w+\b)?
+﻿a					`	^*(?<DoxygenCommand>[@\\]a)\s+(?<DoxygenCommandArgOne>\w+\b)?
 addindex			`	^*(?<DoxygenCommand>[@\\]addindex)\b
 addtogroup			`	^*(?<DoxygenCommand>[@\\]addtogroup)\s+(?<DoxygenCommandArgOne>\w+\b)?\s+(?<DoxygenCommandArgTwo>\w+\b)?
 anchor				`	^*(?<DoxygenCommand>(?:[@\\]anchor))\s+(?<DoxygenCommandArgOne>\w+\b)?
@@ -22,7 +22,7 @@ copydetails			`	^*(?<DoxygenCommand>[@\\]copydetails)\s+(?<DoxygenCommandArgOne>
 copydoc				`	^*(?<DoxygenCommand>[@\\]copydoc)\s+(?<DoxygenCommandArgOne>.+)?
 copyright			`	^*(?<DoxygenCommand>[@\\]copyright)\s+(?<DoxygenCommandArgOne>.+)?
 date				`	^*(?<DoxygenCommand>[@\\]date)\s+(?<DoxygenCommandArgOne>.+)?
-def					`	^*(?<DoxygenCommand>[@\\]def)\s+(?<DoxygenCommandArgOne >.+)?
+def					`	^*(?<DoxygenCommand>[@\\]def)\s+(?<DoxygenCommandArgOne>.+)?
 defgroup			`	^*(?<DoxygenCommand>[@\\]defgroup)\s+(?<DoxygenCommandArgOne>\w+\b)?\s+(?<DoxygenCommandArgTwo>\w+\b)?
 deprecated			`	^*(?<DoxygenCommand>[@\\]deprecated)\s+(?<DoxygenCommandArgOne>.+)?
 details				`	^*(?<DoxygenCommand>[@\\]details)\s+(?<DoxygenCommandArgOne>.+)?
@@ -31,10 +31,10 @@ docbookonly			`	^*(?<DoxygenCommand>[@\\]docbookonly)\b
 dontinclude			`	^*(?<DoxygenCommand>[@\\]dontinclude)\s+(?<DoxygenCommandArgOne>.+)?
 dot					`	^*(?<DoxygenCommand>[@\\]dot)\b
 dotfile				`	^*(?<DoxygenCommand>[@\\]dotfile)\s+(?<DoxygenCommandArgOne>[\w-\.\\/]+\b)?\s+(?<DoxygenCommandArgTwo>.+)?
-e					`	^*(?<DoxygenCommand>[@\\]e\s+(?<DoxygenCommandArgOne>\w+\b)?
+e					`	^*(?<DoxygenCommand>[@\\]e)\s+(?<DoxygenCommandArgOne>\w+\b)?
 else				`	^*(?<DoxygenCommand>[@\\]else)\b
 elseif				`	^*(?<DoxygenCommand>[@\\]elseif)\s+(?<DoxygenCommandArgOne>.+)?
-em					`	^*(?<DoxygenCommand>[@\\]em\s+(?<DoxygenCommandArgOne>\w+\b)?
+em					`	^*(?<DoxygenCommand>[@\\]em)\s+(?<DoxygenCommandArgOne>\w+\b)?
 endcode				`	^*(?<DoxygenCommand>[@\\]endcode)\b
 endcond				`	^*(?<DoxygenCommand>[@\\]endcond)\b
 enddocbookonly		`	^*(?<DoxygenCommand>[@\\]enddocbookonly)\b
@@ -61,7 +61,7 @@ f{					`	^*(?<DoxygenCommand>[@\\]f\{)\s+
 f}					`	^*(?<DoxygenCommand>[@\\]f})\s+
 file				`	^*(?<DoxygenCommand>[@\\]file)\s+(?<DoxygenCommandArgOne>.+)?
 fn					`	^*(?<DoxygenCommand>[@\\]fn)\s+(?<DoxygenCommandArgOne>.+)?
-headerfile			`	^*(?<DoxygenCommand>[@\\]headerfile)\s*(?<DoxygenCommandArgOne >[" +"\"<>\w\.-]+\b)?\s*(?<DoxygenCommandArgTwo >[\"<>\w\.-]+)?
+headerfile			`	^*(?<DoxygenCommand>[@\\]headerfile)\s*(?<DoxygenCommandArgOne>[" +"\"<>\w\.-]+\b)?\s*(?<DoxygenCommandArgTwo>[\"<>\w\.-]+)?
 hideinitializer		`	^*(?<DoxygenCommand>[@\\]hideinitializer)\b
 htmlinclude			`	^*(?<DoxygenCommand>[@\\]htmlinclude)\s+(?<DoxygenCommandArgOne>.+)?
 htmlonly			`	^*(?<DoxygenCommand>[@\\]htmlonly)\b

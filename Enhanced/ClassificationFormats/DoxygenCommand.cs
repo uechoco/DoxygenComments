@@ -31,7 +31,7 @@ namespace Enhanced.ClassificationFormats
     [ClassificationType(ClassificationTypeNames = Names.DoxygenCommand)]
     [Name(Names.DoxygenCommand)]
     [UserVisible(true)]
-    [Order(After = Priority.High)]
+    [Order(Before = Priority.High)]
     public sealed class DoxygenCommand : ClassificationFormatDefinition
     {
         public DoxygenCommand()

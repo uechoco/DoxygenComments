@@ -33,6 +33,7 @@ namespace Enhanced
     {
         public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag
         {
+            var data = RulesLoader.LoadRules();
             return new DoxygenCommentTagger(buffer) as ITagger<T>;
         }
     }
