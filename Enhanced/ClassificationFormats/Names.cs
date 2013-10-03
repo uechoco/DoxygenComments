@@ -23,6 +23,7 @@ namespace Enhanced.ClassificationFormats
 {
     public static class Names
     {
+        public const string Code = "code";
         public const string Comment = "comment";
         public const string DoxygenComment = "manenko/DoxygenComment";
         public const string DoxygenCommand = "manenko/DoxygenCommand";

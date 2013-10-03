@@ -19,32 +19,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Enhanced.ClassificationFormats
+namespace Enhanced
 {
+    using Microsoft.VisualStudio.Text;
     using Microsoft.VisualStudio.Text.Classification;
+    using Microsoft.VisualStudio.Text.Tagging;
     using Microsoft.VisualStudio.Utilities;
     using System.ComponentModel.Composition;
 
-    public static class Definitions
+    [Export(typeof(ITaggerProvider))]
+    [ContentType(Enhanced.ClassificationFormats.Names.Code)]
+    [TagType(typeof(ClassificationTag))]
+    public sealed class DoxygenCommentClassifierProvider : ITaggerProvider
     {
-        [Export(typeof(ClassificationTypeDefinition))]
-        [Name(Names.DoxygenComment)]
-        public static ClassificationTypeDefinition DoxygenComment = null;
+        [Import]
+        internal IBufferTagAggregatorFactoryService AggregatorFactory;
 
-        [Export(typeof(ClassificationTypeDefinition))]
-        [Name(Names.DoxygenCommand)]
-        public static ClassificationTypeDefinition DoxygenCommand;
+        [Import]
+        internal IClassificationTypeRegistryService ClassificationTypeRegistry;
 
-        [Export(typeof(ClassificationTypeDefinition))]
-        [Name(Names.DoxygenCommandArgOne)]
-        public static ClassificationTypeDefinition DoxygenCommandArgOne;
+        public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag
+        {
+            var tagAggregator = AggregatorFactory.CreateTagAggregator<DoxygenCommentTag>(buffer);
 
-        [Export(typeof(ClassificationTypeDefinition))]
-        [Name(Names.DoxygenCommandArgTwo)]
-        public static ClassificationTypeDefinition DoxygenCommandArgTwo;
-
-        [Export(typeof(ClassificationTypeDefinition))]
-        [Name(Names.DoxygenCommandArgThree)]
-        public static ClassificationTypeDefinition DoxygenCommandArgThree;
+            return new DoxygenCommentClassifier(buffer, tagAggregator, ClassificationTypeRegistry) as ITagger<T>;
+        }
     }
 }

@@ -19,32 +19,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Enhanced.ClassificationFormats
+namespace Enhanced
 {
-    using Microsoft.VisualStudio.Text.Classification;
-    using Microsoft.VisualStudio.Utilities;
-    using System.ComponentModel.Composition;
+    using System;
 
-    public static class Definitions
+    [AttributeUsage(AttributeTargets.Field, Inherited = false, AllowMultiple = false)]
+    internal sealed class PatternAttribute : Attribute
     {
-        [Export(typeof(ClassificationTypeDefinition))]
-        [Name(Names.DoxygenComment)]
-        public static ClassificationTypeDefinition DoxygenComment = null;
+        private readonly string pattern;
 
-        [Export(typeof(ClassificationTypeDefinition))]
-        [Name(Names.DoxygenCommand)]
-        public static ClassificationTypeDefinition DoxygenCommand;
+        public PatternAttribute(string pattern)
+        {
+            this.pattern = pattern;
+        }
 
-        [Export(typeof(ClassificationTypeDefinition))]
-        [Name(Names.DoxygenCommandArgOne)]
-        public static ClassificationTypeDefinition DoxygenCommandArgOne;
-
-        [Export(typeof(ClassificationTypeDefinition))]
-        [Name(Names.DoxygenCommandArgTwo)]
-        public static ClassificationTypeDefinition DoxygenCommandArgTwo;
-
-        [Export(typeof(ClassificationTypeDefinition))]
-        [Name(Names.DoxygenCommandArgThree)]
-        public static ClassificationTypeDefinition DoxygenCommandArgThree;
+        public string Pattern
+        {
+            get
+            {
+                return this.pattern;
+            }
+        }
     }
 }

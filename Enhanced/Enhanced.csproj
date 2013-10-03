@@ -46,8 +46,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ClassificationFormats\Definitions.cs" />
-    <Compile Include="CommentTextTagger.cs" />
-    <Compile Include="CommentTextTaggerProvider.cs" />
+    <Compile Include="DoxygenCommandClassifier.cs" />
+    <Compile Include="DoxygenCommandClassifierProvider.cs" />
+    <Compile Include="DoxygenCommandTag.cs" />
+    <Compile Include="DoxygenCommandTagger.cs" />
+    <Compile Include="DoxygenCommandTaggerProvider.cs" />
+    <Compile Include="DoxygenCommentClassifier.cs" />
+    <Compile Include="DoxygenCommentClassifierProvider.cs" />
+    <Compile Include="DoxygenCommentTag.cs" />
+    <Compile Include="DoxygenCommentTaggerProvider.cs" />
+    <Compile Include="DoxygenCommentTagger.cs" />
     <Compile Include="Doxygen.cs" />
     <Compile Include="ClassificationFormats\DoxygenComment.cs" />
     <Compile Include="ClassificationFormats\DoxygenCommandArgOne.cs" />
@@ -55,6 +63,7 @@
     <Compile Include="ClassificationFormats\DoxygenCommandArgTwo.cs" />
     <Compile Include="LineScanner.cs" />
     <Compile Include="LineScanState.cs" />
+    <Compile Include="PatternAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ClassificationFormats\Names.cs" />
     <Compile Include="ClassificationFormats\DoxygenCommand.cs" />
@@ -71,6 +80,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Rules.txt" />
     <Content Include="_PackageSpecific\CONFIGURATION.png" />
     <Content Include="_PackageSpecific\ICON.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

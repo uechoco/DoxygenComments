@@ -19,32 +19,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Enhanced.ClassificationFormats
+namespace Enhanced
 {
-    using Microsoft.VisualStudio.Text.Classification;
-    using Microsoft.VisualStudio.Utilities;
-    using System.ComponentModel.Composition;
+    using Microsoft.VisualStudio.Text.Tagging;
 
-    public static class Definitions
+    public sealed class DoxygenCommentTag : ITag
     {
-        [Export(typeof(ClassificationTypeDefinition))]
-        [Name(Names.DoxygenComment)]
-        public static ClassificationTypeDefinition DoxygenComment = null;
-
-        [Export(typeof(ClassificationTypeDefinition))]
-        [Name(Names.DoxygenCommand)]
-        public static ClassificationTypeDefinition DoxygenCommand;
-
-        [Export(typeof(ClassificationTypeDefinition))]
-        [Name(Names.DoxygenCommandArgOne)]
-        public static ClassificationTypeDefinition DoxygenCommandArgOne;
-
-        [Export(typeof(ClassificationTypeDefinition))]
-        [Name(Names.DoxygenCommandArgTwo)]
-        public static ClassificationTypeDefinition DoxygenCommandArgTwo;
-
-        [Export(typeof(ClassificationTypeDefinition))]
-        [Name(Names.DoxygenCommandArgThree)]
-        public static ClassificationTypeDefinition DoxygenCommandArgThree;
     }
 }

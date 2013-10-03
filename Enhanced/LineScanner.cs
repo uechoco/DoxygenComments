@@ -75,6 +75,14 @@ namespace Enhanced
         public void Advance(int count = 1)
         {
             this.linePosition += count;
+            ////if (this.State == LineScanState.MultilineComment)
+            ////{
+            ////    if (this.Char() == '*' && this.NextNextChar() == '/')
+            ////    {
+            ////        this.linePosition += 2;
+            ////        this.State = LineScanState.Default;
+            ////    }
+            ////}
         }
 
         public char Char()

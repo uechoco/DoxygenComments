@@ -408,8 +408,10 @@ namespace Enhanced
         #endregion
 
         #region Commands
+        
         public const string Command_a = "a";
         public const string Command_addindex = "addindex";
+        [Pattern(@"^*(?<DoxygenCommand>[@\\]addtogroup)\s+(?<DoxygenCommandArgOne>\w+\b)?\s+(?<DoxygenCommandArgTwo>\w+\b)?")]
         public const string Command_addtogroup = "addtogroup";
         public const string Command_anchor = "anchor";
         public const string Command_arg = "arg";
@@ -420,8 +422,11 @@ namespace Enhanced
         public const string Command_brief = "brief";
         public const string Command_bug = "bug";
         public const string Command_c = "c";
+        [Pattern(@"^*(?<DoxygenCommand>[@\\]callgraph)\b")]
         public const string Command_callgraph = "callgraph";
+        [Pattern(@"^*(?<DoxygenCommand>[@\\]callergraph)\b")]
         public const string Command_callergraph = "callergraph";
+         [Pattern(@"^*(?<DoxygenCommand>[@\\]category)\s+(?<DoxygenCommandArgOne>\w+\b)?\s+(?<DoxygenCommandArgTwo>[\w.-]+\b)?\s+(?<DoxygenCommandArgThree" + ">\"" + @"?[\w/\\.-]+\b" + "\"?)?")]
         public const string Command_category = "category";
         public const string Command_cite = "cite";
         public const string Command_class = "class";

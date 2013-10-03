@@ -21,7 +21,6 @@
  */
 namespace Enhanced.ClassificationFormats
 {
-#if DEBUG
     using Enhanced.Resources;
     using Microsoft.VisualStudio.Text.Classification;
     using Microsoft.VisualStudio.Utilities;
@@ -41,5 +40,4 @@ namespace Enhanced.ClassificationFormats
             this.ForegroundColor = Colors.RoyalBlue;
         }
     } 
-#endif
 }

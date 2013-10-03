@@ -25,6 +25,8 @@ namespace Enhanced
     {
         Default,
         Comment,
-        MultilineComment
+        MultilineComment,
+        DoxygenComment,
+        DoxygenMultilineComment
     }
 }
