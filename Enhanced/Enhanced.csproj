@@ -86,17 +86,17 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="_PackageSpecific\CONFIGURATION.png" />
-    <Content Include="_PackageSpecific\ICON.png">
+    <Content Include="PackageSpecific\CONFIGURATION.png" />
+    <Content Include="PackageSpecific\ICON.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="_PackageSpecific\LICENSE.txt">
+    <Content Include="PackageSpecific\LICENSE.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="_PackageSpecific\PREVIEW.png" />
-    <Content Include="_PackageSpecific\PREVIEW400x400.png">
+    <Content Include="PackageSpecific\PREVIEW.png" />
+    <Content Include="PackageSpecific\PREVIEW400x400.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
