@@ -31,9 +31,13 @@ namespace Enhanced
     [TagType(typeof(DoxygenCommandTag))]
     public sealed class DoxygenCommandTaggerProvider : ITaggerProvider
     {
+        [Import]
+        public IBufferTagAggregatorFactoryService Factory = null;
+
         public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag
         {
-            return new DoxygenCommandTagger(buffer) as ITagger<T>;
+            var aggregator = Factory.CreateTagAggregator<DoxygenCommentTag>(buffer);//, TagAggregatorOptions.MapByContentType
+            return new DoxygenCommandTagger(buffer, aggregator) as ITagger<T>;
         }
     }
 }

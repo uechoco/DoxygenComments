@@ -46,6 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ClassificationFormats\Definitions.cs" />
+    <Compile Include="ClassificationFormats\DoxygenClassificationFormat.cs" />
     <Compile Include="DoxygenCommandClassifier.cs" />
     <Compile Include="DoxygenCommandClassifierProvider.cs" />
     <Compile Include="DoxygenCommandTag.cs" />
@@ -72,7 +73,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
-    <Compile Include="RulesLoader.cs" />
+    <Compile Include="Rule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Enhanced.licenseheader" />

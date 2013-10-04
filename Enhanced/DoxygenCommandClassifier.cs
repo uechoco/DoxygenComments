@@ -21,26 +21,32 @@
  */
 namespace Enhanced
 {
-    using Microsoft.VisualStudio.Text;
-    using Microsoft.VisualStudio.Text.Classification;
-    using Microsoft.VisualStudio.Text.Tagging;
-    using System;
-    using System.Collections.Generic;
+    using Enhanced.ClassificationFormats;
+using Microsoft.VisualStudio.Text;
+using Microsoft.VisualStudio.Text.Classification;
+using Microsoft.VisualStudio.Text.Tagging;
+using System;
+using System.Collections.Generic;
 
     public sealed class DoxygenCommandClassifier : ITagger<ClassificationTag>
     {
         #region Fields
         private readonly ITextBuffer buffer;
-        private readonly IClassificationType commandClassification;
         private readonly ITagAggregator<DoxygenCommandTag> tagAggregator;
+        private readonly IDictionary<DoxygenClassificationFormat, IClassificationType> doxygenClassifications;
         #endregion
 
         #region Constructors
         public DoxygenCommandClassifier(ITextBuffer buffer, ITagAggregator<DoxygenCommandTag> tagAggregator, IClassificationTypeRegistryService typeService)
         {
             this.buffer = buffer;
-            this.commandClassification = typeService.GetClassificationType(Enhanced.ClassificationFormats.Names.DoxygenCommand);
             this.tagAggregator = tagAggregator;
+
+            this.doxygenClassifications = new Dictionary<DoxygenClassificationFormat, IClassificationType>(4);
+            this.doxygenClassifications[DoxygenClassificationFormat.Command] = typeService.GetClassificationType(Enhanced.ClassificationFormats.Names.DoxygenCommand);
+            this.doxygenClassifications[DoxygenClassificationFormat.ArgOne] = typeService.GetClassificationType(Enhanced.ClassificationFormats.Names.DoxygenCommandArgOne);
+            this.doxygenClassifications[DoxygenClassificationFormat.ArgTwo] = typeService.GetClassificationType(Enhanced.ClassificationFormats.Names.DoxygenCommandArgTwo);
+            this.doxygenClassifications[DoxygenClassificationFormat.ArgThree] = typeService.GetClassificationType(Enhanced.ClassificationFormats.Names.DoxygenCommandArgThree);
         }
         #endregion
 
@@ -53,7 +59,7 @@ namespace Enhanced
                 var tagSpans = tagSpan.Span.GetSpans(spans[0].Snapshot);
                 yield return
                     new TagSpan<ClassificationTag>(tagSpans[0],
-                                                   new ClassificationTag(this.commandClassification));
+                                                   new ClassificationTag(this.doxygenClassifications[tagSpan.Tag.ClassificationFormat]));
             }
         }
         #endregion

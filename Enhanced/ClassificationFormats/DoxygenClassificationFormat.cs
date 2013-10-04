@@ -19,26 +19,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Enhanced
+namespace Enhanced.ClassificationFormats
 {
-    using Enhanced.ClassificationFormats;
-    using Microsoft.VisualStudio.Text.Tagging;
-
-    public sealed class DoxygenCommandTag : ITag
+    public enum DoxygenClassificationFormat
     {
-        private readonly DoxygenClassificationFormat command;
-
-        public DoxygenCommandTag(DoxygenClassificationFormat command)
-        {
-            this.command = command;
-        }
-
-        public DoxygenClassificationFormat ClassificationFormat
-        {
-            get
-            {
-                return this.command;
-            }
-        }
+        Command,
+        ArgOne,
+        ArgTwo,
+        ArgThree
     }
 }

@@ -21,64 +21,80 @@
  */
 namespace Enhanced
 {
-    using Microsoft.VisualStudio.Text;
-    using Microsoft.VisualStudio.Text.Tagging;
-    using System;
-    using System.Collections.Generic;
+    using Enhanced.ClassificationFormats;
+using Microsoft.VisualStudio.Text;
+using Microsoft.VisualStudio.Text.Tagging;
+using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
     public sealed class DoxygenCommandTagger : ITagger<DoxygenCommandTag>, IDisposable
     {
         private readonly ITextBuffer textBuffer;
         private readonly Doxygen doxygen;
+        private readonly ITagAggregator<DoxygenCommentTag> doxygenCommentsAggregator;
+        private readonly IEnumerable<Rule> rules;
 
-        public DoxygenCommandTagger(ITextBuffer textBuffer)
+        public DoxygenCommandTagger(ITextBuffer textBuffer, ITagAggregator<DoxygenCommentTag> doxygenCommentsAggregator)
         {
             this.textBuffer = textBuffer;
             this.doxygen = new Doxygen();
+            this.doxygenCommentsAggregator = doxygenCommentsAggregator;
+            this.rules = Rule.GetRules();
         }
 
         public IEnumerable<ITagSpan<DoxygenCommandTag>> GetTags(NormalizedSnapshotSpanCollection spans)
         {
-            foreach (var span in spans)
+            if (spans.Count == 0)
+                yield break;
+
+            var snapshot = spans[0].Snapshot;
+
+            foreach (var doxygenComment in this.doxygenCommentsAggregator.GetTags(spans))
             {
-                var lineStart = span.Start;
-                while (lineStart < span.End)
+                var doxygenCommentSpans = doxygenComment.Span.GetSpans(snapshot);
+                if (doxygenCommentSpans.Count != 1)
                 {
-                    var line = lineStart.GetContainingLine();
-                    var text = line.GetText();
+                    continue;
+                }
+                else
+                {
+                    var doxygenCommentSpan = doxygenCommentSpans[0];
+                    var text = snapshot.GetText(doxygenCommentSpan);
+                    var spanStart = doxygenCommentSpan.Start;
 
-                    var index = 0;
-                    while (index < text.Length)
-	                {
-                        index = text.IndexOf("@brief", index);
+                    foreach (var rule in this.rules)
+                    {
+                        var match = rule.Regex.Match(text, 0);
+                        while (match.Success)
+                        {
+                            var group = match.Groups[DoxygenCommandGroup];
+                            if (group.Success)
+                            {
+                                yield return new TagSpan<DoxygenCommandTag>(new SnapshotSpan(spanStart + group.Index, group.Length), new DoxygenCommandTag(DoxygenClassificationFormat.Command));
+                            }
 
-                        if (index != -1)
-                        {
-                            yield return new TagSpan<DoxygenCommandTag>(
-                                new SnapshotSpan(lineStart + index, "@brief".Length), 
-                                new DoxygenCommandTag(Doxygen.Token_brief));
-                            index += "@brief".Length;
-                        }
-                        else
-                        {
-                            break;
+                            group = match.Groups[DoxygenArgOneGroup];
+                            if (group.Success)
+                            {
+                                yield return new TagSpan<DoxygenCommandTag>(new SnapshotSpan(spanStart + group.Index, group.Length), new DoxygenCommandTag(DoxygenClassificationFormat.ArgOne));
+                            }
+
+                            group = match.Groups[DoxygenArgTwoGroup];
+                            if (group.Success)
+                            {
+                                yield return new TagSpan<DoxygenCommandTag>(new SnapshotSpan(spanStart + group.Index, group.Length), new DoxygenCommandTag(DoxygenClassificationFormat.ArgTwo));
+                            }
+
+                            group = match.Groups[DoxygenArgThreeGroup];
+                            if (group.Success)
+                            {
+                                yield return new TagSpan<DoxygenCommandTag>(new SnapshotSpan(spanStart + group.Index, group.Length), new DoxygenCommandTag(DoxygenClassificationFormat.ArgThree));
+                            }
+
+                            match = rule.Regex.Match(text, match.Index + match.Length);
                         }
                     }
-                    
-                    //var state = this.lineCache[line.LineNumber];
-
-                    //var textSpans = new List<SnapshotSpan>();
-                    ////state = this.ScanLine(state, line, textSpans);
-                    //foreach (var textSpan in textSpans)
-                    //{
-                    //    if (textSpan.IntersectsWith(span))
-                    //    {
-                    //        yield return new TagSpan<DoxygenCommentTag>(textSpan, new DoxygenCommentTag());
-                    //    }
-                    //}
-
-                   // Advance to next line.
-                   lineStart = line.EndIncludingLineBreak;
                 }
             }
         }
@@ -87,6 +103,30 @@ namespace Enhanced
 
         public void Dispose()
         {
+            this.doxygenCommentsAggregator.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
+        private const string DoxygenCommandGroup = "DoxygenCommand";
+        private const string DoxygenArgOneGroup = "DoxygenCommandArgOne";
+        private const string DoxygenArgTwoGroup = "DoxygenCommandArgTwo";
+        private const string DoxygenArgThreeGroup = "DoxygenCommandArgThree";
+
+        private static DoxygenClassificationFormat GetFormat(string name)
+        {
+            switch (name)
+            {
+                case DoxygenCommandGroup:
+                    return DoxygenClassificationFormat.Command;
+                case DoxygenArgOneGroup:
+                    return DoxygenClassificationFormat.ArgOne;
+                case DoxygenArgTwoGroup:
+                    return DoxygenClassificationFormat.ArgTwo;
+                case DoxygenArgThreeGroup:
+                    return DoxygenClassificationFormat.ArgThree;
+                default:
+                    throw new InvalidOperationException("Provided match group is unknown");
+            }
         }
     }
 }

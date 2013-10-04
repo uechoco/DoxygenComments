@@ -37,7 +37,7 @@ namespace Enhanced.ClassificationFormats
         public DoxygenComment()
         {
             this.DisplayName = Strings.DoxygenCommentDisplayName;
-            this.ForegroundColor = Colors.RoyalBlue;
+            this.ForegroundColor = Color.FromRgb(96, 139, 78);
         }
     } 
 }
