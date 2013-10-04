@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Vsix Version="1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2010">
   <Identifier Id="EnhancedCommentsCpp..b942310b-cfb1-496d-ae3c-65937baed223">
-    <Name>EnhancedCommentsCpp</Name>
+    <Name>DoxygenComments</Name>
     <Author>Alexander Manenko</Author>
     <Version>2.0</Version>
-    <Description xml:space="preserve">Visual Studio Editor extension that highlights Doxygen documentation tags inside C++ comments.</Description>
+    <Description xml:space="preserve">Visual Studio Editor extension that highlights Doxygen documentation tags inside C++, C# and JavaScript comments.</Description>
     <Locale>1033</Locale>
     <InstalledByMsi>false</InstalledByMsi>
     <SupportedProducts>
