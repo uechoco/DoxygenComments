@@ -1,5 +1,5 @@
 ﻿/**
- * Copyright (c) 2013 Alexander Manenko
+ * Copyright (c) 2013-2015 Oleksandr Manenko
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,11 +22,11 @@
 namespace Enhanced
 {
     using Enhanced.ClassificationFormats;
-using Microsoft.VisualStudio.Text;
-using Microsoft.VisualStudio.Text.Classification;
-using Microsoft.VisualStudio.Text.Tagging;
-using System;
-using System.Collections.Generic;
+    using Microsoft.VisualStudio.Text;
+    using Microsoft.VisualStudio.Text.Classification;
+    using Microsoft.VisualStudio.Text.Tagging;
+    using System;
+    using System.Collections.Generic;
 
     public sealed class DoxygenCommandClassifier : ITagger<ClassificationTag>
     {

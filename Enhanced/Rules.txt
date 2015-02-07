@@ -59,7 +59,7 @@ f[					->	^*(?<DoxygenCommand>[@\\]f\[)\s+
 f]					->	^*(?<DoxygenCommand>[@\\]f])\s+
 f{					->	^*(?<DoxygenCommand>[@\\]f\{)\s+
 f}					->	^*(?<DoxygenCommand>[@\\]f})\s+
-file				->	^*(?<DoxygenCommand>[@\\]file)\s+(?<DoxygenCommandArgOne>.+)?
+file				->	^*(?<DoxygenCommand>[@\\]file)(?<DoxygenCommandArgOne>s+.+)?
 fn					->	^*(?<DoxygenCommand>[@\\]fn)\s+(?<DoxygenCommandArgOne>.+)?
 headerfile			->	^*(?<DoxygenCommand>[@\\]headerfile)\s*(?<DoxygenCommandArgOne>[" +"\"<>\w\.-]+\b)?\s*(?<DoxygenCommandArgTwo>[\"<>\w\.-]+)?
 hideinitializer		->	^*(?<DoxygenCommand>[@\\]hideinitializer)\b

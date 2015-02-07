@@ -1,5 +1,5 @@
 ﻿/**
- * Copyright (c) 2013 Alexander Manenko
+ * Copyright (c) 2013-2015 Oleksandr Manenko
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +23,8 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Enhanced")]
-[assembly: AssemblyVersion("2.0.0.0")]
-[assembly: AssemblyFileVersion("2.0.0.0")]
+[assembly: AssemblyVersion("2.5.0.0")]
+[assembly: AssemblyFileVersion("2.5.0.0")]
 [assembly: AssemblyProduct("DoxygenComments")]
-[assembly: AssemblyCopyright("Copyright (c) 2013 by Alexander Manenko")]
+[assembly: AssemblyCopyright("Copyright (c) 2013-2015 by Oleksandr Manenko")]
 [assembly: ComVisible(false)]
